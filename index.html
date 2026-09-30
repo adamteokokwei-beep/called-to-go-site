@@ -619,6 +619,16 @@
   a.btn{text-decoration:none;}
   @media (max-width:600px){ .hero-ctas .btn[data-goto="give"]{display:none;} }
   h3[data-h4]{font-size:1em;}
+
+  /* copyright & personal use */
+  a.ff-brand{text-decoration:none;}
+  a.ff-brand:hover{color:#fff;}
+  .copyright-note{margin:64px 0 8px; padding-top:30px; border-top:1px solid var(--paper-line); max-width:68ch;}
+  .copyright-note h2{font-size:clamp(20px,3vw,24px); margin:8px 0 12px;}
+  .copyright-note p{color:var(--ink); font-size:14.5px; line-height:1.65; margin:0 0 10px;}
+  .copyright-note a{color:var(--terra, #B5502A);}
+  .personal-use{margin-top:14px; padding:10px 12px; border-radius:8px; background:rgba(181,80,42,.07); font-size:13px; line-height:1.55; color:var(--ink-2);}
+  .personal-use a{color:inherit; font-weight:600;}
 </style>
 
 </head>
@@ -832,6 +842,15 @@
       <p>Every title from the ministry. Tap a book to see the details and how to get a copy. All proceeds from the book go to Christine.</p>
     </div>
     <div class="catalogue" id="bookCatalogue"></div>
+
+    <div class="copyright-note" id="copyright">
+      <span class="eyebrow">COPYRIGHT &amp; USE</span>
+      <h2>Copyright and personal use</h2>
+      <p>&copy; 2026 Christine. All rights reserved.</p>
+      <p>The book <i>Called to Go</i> and the original words, photos and videos on this website belong to Christine and are protected by copyright. Please don&rsquo;t copy, redistribute, republish, upload or resell them without her permission, except where the law allows (for example, quoting a short passage with credit).</p>
+      <p>When you buy the eBook, it is for your own personal reading. Please don&rsquo;t forward the file, post it online or share it in group chats. If a friend would like to read it, send them to this page instead: every copy bought supports Christine&rsquo;s ministry.</p>
+      <p>To ask about quoting the book, using a photo or anything else, email <a href="mailto:adamteokokwei@gmail.com">adamteokokwei@gmail.com</a> or message <a href="https://wa.me/601128909055" target="_blank" rel="noopener">WhatsApp +60 11-2890 9055</a>.</p>
+    </div>
   </div>
 </section>
 
@@ -958,7 +977,7 @@
 
 <footer id="contact" class="float-foot">
   <div class="ff-inner">
-    <span class="ff-brand">© <span id="yr"></span> Called to Go Ministry</span>
+    <a class="ff-brand" href="#copyright" data-goto="book" data-target="copyright" data-tip="Copyright and use">© 2026 Christine<span class="ff-label">. All rights reserved.</span></a>
     <span class="ff-sep" aria-hidden="true"></span>
     <span class="ff-item ff-place">Johor Bahru, Malaysia</span>
     <a class="ff-item" href="mailto:adamteokokwei@gmail.com" aria-label="Email adamteokokwei@gmail.com" data-tip="Email us"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="ff-label">adamteokokwei@gmail.com</span></a>
@@ -990,7 +1009,7 @@
 </div>
 
 <script>
-document.getElementById('yr').textContent = new Date().getFullYear();
+var yrEl = document.getElementById('yr'); if(yrEl) yrEl.textContent = new Date().getFullYear();
 
 (function(){
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
@@ -1147,7 +1166,8 @@ var MISSION_FUND = {
       buy = '<div class="buy-box"><div class="price-row"><span class="amt">' + esc(b.currency) + ' ' + esc(b.price) + '</span><span class="fmt">' + esc(b.format) + '<br>Digital download</span></div>' +
         '<a class="paypal-pay-btn" href="' + esc(paypalUrl(b)) + '" target="_blank" rel="noopener"><span class="pp-mark">Buy with <span>Pay</span><span class="pp-light">Pal</span></span></a>' +
         '<p class="paypal-note">Pay with your PayPal balance, or with a debit or credit card through PayPal. All proceeds from the book go to Christine.</p>' +
-        '<ol class="delivery"><li>Pay the exact amount through PayPal.</li><li>We send the eBook to the email address on your PayPal payment.</li><li>Not received it? Send your receipt on WhatsApp to +60 11-2890 9055.</li></ol></div>';
+        '<ol class="delivery"><li>Pay the exact amount through PayPal.</li><li>We send the eBook to the email address on your PayPal payment.</li><li>Not received it? Send your receipt on WhatsApp to +60 11-2890 9055.</li></ol>' +
+        '<p class="personal-use">Your copy is for your own personal reading. Please don\u2019t forward the file or upload it anywhere; if a friend would like to read it, send them here so their copy supports Christine too. <a href="#copyright" data-close-goto="copyright">Copyright and use</a></p></div>';
     } else {
       buy = '<div class="buy-box"><p style="font-size:14px; color:var(--ink-2); margin-bottom:12px;">This book is still being written. Leave your details and we will let you know when it is ready.</p>' +
         '<a class="btn btn-brass" href="https://wa.me/601128909055?text=' + encodeURIComponent('Hi, please let me know when "' + b.title + '" is ready.') + '" target="_blank" rel="noopener">Notify me on WhatsApp</a>' +
@@ -1166,6 +1186,13 @@ var MISSION_FUND = {
     if(t) openBook(t.getAttribute('data-book'));
   });
   document.getElementById('bookModalClose').addEventListener('click', closeBook);
+  modalBody.addEventListener('click', function(e){
+    var a = e.target.closest('[data-close-goto]');
+    if(!a) return;
+    e.preventDefault(); closeBook();
+    var t = document.getElementById(a.getAttribute('data-close-goto'));
+    if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+  });
   modal.addEventListener('click', function(e){ if(e.target === modal) closeBook(); });
 
   /* ---------- mission fund report ---------- */
