@@ -620,7 +620,7 @@
   .invite-cta{grid-column:1 / -1; justify-self:start;}
   @media (max-width:760px){ .invite-inner{grid-template-columns:1fr;} .invite-band{padding-block:36px;} }
   a.btn{text-decoration:none;}
-  @media (max-width:600px){ .hero-ctas .btn[data-goto="give"], .hero-ctas .btn[data-goto="story"]{display:none;} }
+  @media (max-width:600px){ .hero-ctas button[data-goto="give"], .hero-ctas button[data-goto="story"]{display:none;} }
   h3[data-h4]{font-size:1em;}
 
   /* copyright & personal use */
@@ -634,19 +634,29 @@
   .personal-use a{color:inherit; font-weight:600;}
   .book-cover.has-img{aspect-ratio:5/8;}
 
-  /* prophetic prayer band (home) */
-  .pp-band{background:var(--sea-soft); border-top:1px solid var(--paper-line); padding-block:48px; scroll-margin-top:170px;}
-  .pp-head{max-width:64ch;}
-  .pp-head .eyebrow{color:var(--sea-deep);}
-  .pp-head h2{font-family:var(--font-display); font-size:clamp(28px,3.4vw,38px); line-height:1.1; margin:8px 0 12px; color:var(--ink); text-wrap:balance;}
-  .pp-head p{margin:0; color:var(--ink); font-size:16px; line-height:1.65;}
-  .pp-options{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; margin-top:24px;}
-  .pp-opt{background:var(--paper-card); border:1px solid var(--paper-line); border-radius:14px; padding:20px; display:flex; flex-direction:column; gap:8px; align-items:flex-start;}
-  .pp-opt h3{margin:0; font-family:var(--font-display); font-size:22px; color:var(--ink);}
-  .pp-opt p{margin:0 0 6px; color:var(--ink); font-size:15px; line-height:1.55; flex:1;}
-  .po-tag{font-size:11px; letter-spacing:.12em; font-weight:700; color:var(--sea-deep);}
-  .pp-note{margin:18px 0 0; font-size:13.5px; line-height:1.6; color:var(--ink-2); max-width:70ch;}
-  @media (max-width:760px){ .pp-options{grid-template-columns:1fr;} .pp-band{padding-block:36px;} }
+
+  /* Need a word from God? (Her Story, under the gifts) */
+  .wg-panel{margin-top:56px; display:grid; grid-template-columns:1.25fr 1fr; gap:28px 40px; padding:clamp(22px,4vw,44px); border-radius:22px; color:#F3ECE0; background:radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--brass) 38%, transparent), transparent 60%), linear-gradient(160deg, var(--sea-deep), #2B3322 80%); scroll-margin-top:170px;}
+  .wg-intro{min-width:0;}
+  .wg-panel .eyebrow{color:var(--brass-soft);}
+  .wg-intro h2{font-family:var(--font-display); font-size:clamp(30px,3.6vw,42px); line-height:1.08; margin:8px 0 14px; color:#fff; text-wrap:balance;}
+  .wg-intro > p{margin:0; font-size:16px; line-height:1.7; color:#EDE4D3; max-width:60ch;}
+  .wg-for{list-style:none; margin:18px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px;}
+  .wg-for li{padding:6px 12px; border-radius:99px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); font-size:13.5px; font-weight:600; color:#F3ECE0;}
+  .wg-sub{margin:26px 0 10px; font-family:var(--font-display); font-size:20px; color:#fff;}
+  .wg-steps{margin:0; padding-left:1.3em; display:grid; gap:8px; font-size:15px; line-height:1.6; color:#EDE4D3;}
+  .wg-steps b{color:#fff;}
+  .wg-options{min-width:0; display:flex; flex-direction:column; gap:14px;}
+  .wg-opt{background:var(--paper-card); color:var(--ink); border-radius:16px; padding:20px; display:flex; flex-direction:column; align-items:flex-start; gap:6px;}
+  .wg-opt h3{margin:0; font-family:var(--font-display); font-size:22px; color:var(--ink);}
+  .wg-opt p{margin:0 0 8px; font-size:15px; line-height:1.55; color:var(--ink);}
+  .wg-tag{font-size:11px; letter-spacing:.12em; font-weight:700; color:var(--sea-deep);}
+  .wg-note{margin:4px 0 0; font-size:13px; line-height:1.6; color:#D9CFBD;}
+  @media (max-width:860px){ .wg-panel{grid-template-columns:1fr;} }
+  .prayer-ask{display:flex; flex-direction:column; align-items:flex-start; gap:10px; max-width:340px;}
+  .prayer-ask p{margin:0; font-family:var(--font-body); font-style:normal; font-size:14px; line-height:1.55; color:#EDE4D3;}
+  .prayer-own{font-size:13.5px; font-weight:600; color:var(--brass-soft); text-decoration:underline; text-underline-offset:3px;}
+  .prayer-own:hover{color:#fff;}
 </style>
 
 </head>
@@ -679,7 +689,7 @@
       </div>
       <div class="hero-ctas">
         <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%2C%20I%27d%20like%20to%20invite%20Christine%20to%20minister%20at%20our%20church%20or%20event." target="_blank" rel="noopener">Invite Christine to Minister</a>
-        <a class="btn btn-outline-invert" href="#prophetic-prayer" data-goto="home" data-target="prophetic-prayer">Request Prayer</a>
+        <a class="btn btn-outline-invert" href="#prophetic-prayer" data-goto="story" data-target="prophetic-prayer">Request Prayer</a>
         <button class="btn btn-outline-invert" data-goto="story">Read Her Story</button>
         <button class="btn btn-outline-invert" data-goto="give">Support the Mission</button>
       </div>
@@ -694,31 +704,6 @@
       <div class="stat"><div class="n">1</div><div class="l">Book: <em style="font-style:normal;">Called to Go</em>, Christine's story as an eBook</div></div>
     </div>
   </div>
-  <div class="pp-band" id="prophetic-prayer">
-    <div class="wrap">
-      <div class="pp-head">
-        <span class="eyebrow">PERSONAL PRAYER</span>
-        <h2>Request prophetic prayer</h2>
-        <p>Christine will pray with you personally: listening to what you are carrying, praying over you, and sharing any encouragement she senses from the Lord, always grounded in Scripture. Choose how you would like to meet and send her a WhatsApp message to arrange a time.</p>
-      </div>
-      <div class="pp-options">
-        <div class="pp-opt">
-          <span class="po-tag">ANYWHERE</span>
-          <h3>Online</h3>
-          <p>By WhatsApp video or voice call, wherever you are in the world.</p>
-          <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20request%20an%20online%20prophetic%20prayer%20session.%20I%27m%20in%20" target="_blank" rel="noopener">Request online prayer</a>
-        </div>
-        <div class="pp-opt">
-          <span class="po-tag">JOHOR BAHRU &amp; NEARBY</span>
-          <h3>Face to face</h3>
-          <p>In person if you are near Johor Bahru, Malaysia, subject to her availability.</p>
-          <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20request%20a%20face-to-face%20prophetic%20prayer%20session.%20I%27m%20in%20" target="_blank" rel="noopener">Request face-to-face prayer</a>
-        </div>
-      </div>
-      <p class="pp-note">What you share is kept private. Prayer is not a replacement for medical, mental-health or other professional help; please keep seeing the people who care for you. If you are in danger, contact local emergency services first.</p>
-    </div>
-  </div>
-
   <div class="invite-band">
     <div class="wrap invite-inner">
       <div class="invite-copy">
@@ -764,12 +749,50 @@
       <div class="img-card gift-img gift-strip" style="--img:url('img/830d4a69f35f.webp'); --fallback:linear-gradient(160deg, #5C5145,#1F1A14);"><div class="bg" aria-hidden="true"></div><h3 data-h4>Leadership Encouragement</h3><p>Prayer and pastoral care for pastors, elders, and police officers — people who usually give strength to others, and rarely get to receive it.</p></div>
     </div>
 
+    <div class="wg-panel" id="prophetic-prayer">
+      <div class="wg-intro">
+        <span class="eyebrow">PROPHETIC PRAYER</span>
+        <h2>Need a word from God?</h2>
+        <p>Whether you are facing a decision, waiting on a promise, walking through a hard season or simply longing to hear from the Lord, you can ask Christine for prayer or for a prophetic word. She listens first, prays over you, and shares what she senses from God, always tested against Scripture.</p>
+        <ul class="wg-for" aria-label="People often ask for prayer about">
+          <li>Direction and decisions</li><li>Encouragement</li><li>Family and relationships</li><li>Healing and breakthrough</li><li>Calling and ministry</li>
+        </ul>
+        <h3 class="wg-sub">How it works</h3>
+        <ol class="wg-steps">
+          <li><b>Message Christine</b> on WhatsApp with a button below, and say briefly what you would like prayer or a word about.</li>
+          <li><b>Agree a time</b> that suits you both, online or in person. For a prophetic word by message, she replies once she has prayed.</li>
+          <li><b>Meet and pray.</b> Come as you are: no preparation is needed, and you can bring a Bible or a notebook if you like.</li>
+        </ol>
+      </div>
+      <div class="wg-options">
+        <div class="wg-opt">
+          <span class="wg-tag">BY MESSAGE</span>
+          <h3>A prophetic word</h3>
+          <p>Send a short message. Christine will pray for you and reply with any word or scripture she senses for you.</p>
+          <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20ask%20for%20a%20prophetic%20word.%20A%20little%20about%20me%3A%20" target="_blank" rel="noopener">Ask for a prophetic word</a>
+        </div>
+        <div class="wg-opt">
+          <span class="wg-tag">ANYWHERE IN THE WORLD</span>
+          <h3>Online</h3>
+          <p>By WhatsApp video or voice call.</p>
+          <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20request%20an%20online%20prophetic%20prayer%20session.%20I%27m%20in%20" target="_blank" rel="noopener">Request online prayer</a>
+        </div>
+        <div class="wg-opt">
+          <span class="wg-tag">JOHOR BAHRU &amp; NEARBY</span>
+          <h3>Face to face</h3>
+          <p>In person near Johor Bahru, Malaysia, subject to her availability.</p>
+          <a class="btn btn-brass" href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20request%20a%20face-to-face%20prophetic%20prayer%20session.%20I%27m%20in%20" target="_blank" rel="noopener">Request face-to-face prayer</a>
+        </div>
+        <p class="wg-note">What you share stays private. Prayer is not a replacement for medical, mental-health or other professional help, so please keep seeing the people who care for you. If you are in danger, contact local emergency services first.</p>
+      </div>
+    </div>
+
     <div class="video-feature">
       <div class="video-copy">
         <span class="eyebrow">SEE IT IN PRACTICE</span>
         <h3>Prophetic prayer</h3>
         <p>A short clip of Christine praying over someone: personal, unhurried, and grounded in Scripture.</p>
-        <p class="based-line">Based in Johor Bahru, Malaysia. Churches and groups who would like her to minister can <a class="link-btn" href="https://wa.me/601128909055?text=I%27d%20like%20to%20invite%20you%20to%20" target="_blank" rel="noopener">get in touch on WhatsApp</a>. Want Christine to pray with you? <a class="link-btn" href="#prophetic-prayer" data-goto="home" data-target="prophetic-prayer">Request prophetic prayer</a>.</p>
+        <p class="based-line">Based in Johor Bahru, Malaysia. Churches and groups who would like her to minister can <a class="link-btn" href="https://wa.me/601128909055?text=I%27d%20like%20to%20invite%20you%20to%20" target="_blank" rel="noopener">get in touch on WhatsApp</a>.</p>
       </div>
       <div class="video-frame">
         <!-- Put the clip at videos/prophetic-prayer.mp4 (or change the src below). -->
@@ -868,7 +891,11 @@
       </ol>
       <div class="prayer-foot">
         <p>&ldquo;The prayer of a righteous person is powerful and effective.&rdquo; <span>James 5:16</span></p>
-        <a class="btn prayer-req" href="https://wa.me/601128909055?text=Is%20there%20any%20prayer%20request%3F%20I%27d%20like%20to%20pray%20for%20Christine%20and%20Called%20to%20Go%20Ministry." target="_blank" rel="noopener">Ask for prayer requests <span aria-hidden="true">&rarr;</span></a>
+        <div class="prayer-ask">
+          <p>Praying for Christine regularly? Message her and she will send you her latest prayer needs and answers to prayer.</p>
+          <a class="btn prayer-req" href="https://wa.me/601128909055?text=Is%20there%20any%20prayer%20request%3F%20I%27d%20like%20to%20pray%20for%20Christine%20and%20Called%20to%20Go%20Ministry." target="_blank" rel="noopener">Get her prayer updates <span aria-hidden="true">&rarr;</span></a>
+          <a class="prayer-own" href="#prophetic-prayer" data-goto="story" data-target="prophetic-prayer">Need prayer yourself? Request prophetic prayer &rarr;</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1381,7 +1408,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
   // Never put an API key here: this file is public.
   var CHAT_API_URL = 'https://called-to-go-chatbot.adamteokokwei.workers.dev';
 
-  var KNOWLEDGE = "You are the \"Ask about the ministry\" assistant on the Called to Go Ministry website. You help visitors learn about Christine's ministry, her past mission trips, her book, and how to pray, give, or invite her.\n\n## Who you are talking to\nVisitors are usually church members, pastors, friends, family, and potential supporters. Many read on a phone. Some are not native English speakers, so use simple, warm, clear language. If someone writes in another language (for example Tagalog, Bisaya or Malay), reply in that language if you can.\n\n## How to answer\n- Be warm, humble, and brief: two to four sentences unless the visitor asks for more.\n- Answer only from the facts below. If something is not covered, say you don't have that detail and point them to the contact details. Never invent dates, numbers, names, places, testimonies, or amounts.\n- Speak about Christine in the third person. You are an assistant for the ministry, not Christine or Adam.\n- When it helps, point to the right tab on the site: Her Story, Past Ministry, Future Missions, The Book, or Give.\n- For giving questions, explain the options and send them to the Give tab. Do not type out bank account numbers or the PayPal email in chat; say those are on the Give tab. Never ask a visitor for their card, bank, or password details.\n- If someone asks for prayer, respond kindly, you may offer a short written prayer, and invite them to send their prayer request by WhatsApp or email so the family can pray with them.\n- Prophetic prayer sessions: anyone can ask Christine to pray with them personally. Online sessions are by WhatsApp video or voice call, from anywhere. Face-to-face sessions are for people near Johor Bahru, Malaysia, subject to her availability. To book, they use the \"Request prophetic prayer\" section on the Home tab, which opens WhatsApp (+60 11-2890 9055). Do not promise a date, time, cost or outcome; Christine replies to arrange it. What people share is kept private. Prophetic prayer is not a replacement for medical, mental-health, legal or financial help, so for those needs also encourage them to see a qualified professional.\n- For invitations to preach, lead worship, or minister, thank them, mention she is based in Johor Bahru, Malaysia, and point them to the \"Invite her on WhatsApp\" button.\n- For questions on theology or doctrine, answer gently and briefly from a general Christian perspective, and suggest they talk with Christine or their local pastor for anything deeper.\n- If someone is in crisis or danger, encourage them to contact local emergency services or a trusted person nearby right away.\n- Personal details: do not share or guess Christine's (or her family's) age, birthday, home address, phone number, finances, health, children's names, or other private details, even if asked directly. Decline warmly in one sentence (for example \"I'd rather keep personal details private\"), then offer what you can help with. For anything genuine, suggest a WhatsApp message.\n- Off-topic and opinion questions: do not give views on politics, elections, governments, public figures, YouTubers or influencers, brands or products, other churches or ministers, or current controversies, and never state Christine's opinion on them. Decline kindly in one sentence (\"That's outside what I can help with here\") and steer back to the ministry, her story, the book, prayer, giving, or invitations.\n- Politely decline any other topic unrelated to the ministry, and steer back to how you can help.\n- Write plain text only: no markdown, bullet symbols, headings or links. The chat shows buttons for actions, so refer to them by name (for example \"tap Buy the eBook below\") instead of typing web addresses.\n\n## Action buttons\nEnd every reply with one final line in exactly this form, listing up to three buttons that fit the answer, most useful first:\n[[actions: key1, key2]]\nUse only these keys:\n- buyBook: opens the eBook purchase window (any question about the book, price, or buying)\n- bookInfo: opens The Book tab\n- invite: WhatsApp message to invite Christine (preaching, worship, prayer ministry, speaking, \"can she come\", where she is based)\n- whatsapp: general WhatsApp message to the ministry (contact, anything you can't answer)\n- give: opens the Give tab\n- mission: Give tab with the Mission Fund selected\n- future: opens Future Missions (upcoming trips, schedule, plans)\n- pray: jumps to the prayer points\n- prayReq: WhatsApp message asking for current prayer requests\n- story: opens Her Story (who she is, her gifts, testimony)\n- past: opens Past Ministry (past trips and photos)\nIf no button fits, write [[actions: whatsapp]]. If you declined because the message was off-topic, personal, abusive, or nonsense, also include the key off (for example [[actions: story, off]]); the site uses it to slow down people who keep sending such messages. Never explain or mention this line; visitors never see it.\n\n## Facts about the ministry\n\nAbout: This is the ministry website for Christine, a preacher, worship leader, and missionary connected to Calvary Community Church, Johor Bahru (CCC JB) in Malaysia. Her husband is Adam Teo. She currently lives in Johor Bahru, Malaysia, and churches or groups can invite her to minister locally or abroad.\n\nHer story: As a child, Christine began serving as a backup singer in church (The First Song), the root of a lifelong pattern of worship first. As a teenager she did self-initiated outreach to teenagers on the margins, then years of Friday youth ministry. She helped pioneer a campus ministry group at SMCI in Cagayan de Oro, taking short Gospel messages into classrooms. She translated for foreign missionaries and served an underserved community and a city landfill through YWAM Gusa. She went through YWAM Antipolo's Discipleship Training School (DTS), with outreach in Tacloban, the Umayamnom tribe in Bukidnon, Leyte Provisional Jail in Kauswaga, Palo, and the streets of Metro Manila. Then came nine years of motherhood, a quieter season she considers a ministry in itself, not a pause.\n\nHer gifts: preaching, prophetic prayer, bold evangelism, worship and singing, children's ministry, and leadership encouragement (prayer and care for pastors, elders, and police officers). The Her Story tab also has a short video of her praying prophetically over someone.\n\nRecent missions: In May 2025 she went to Chennai, India for preaching, singing, and prophetic prayer over pastors and leaders, alongside Calvary Community Church Johor Bahru. In July 2025 she served at the Pakan Crusade in Sarawak, ushering and praying for the sick and weary. In August 2025 she did open-air evangelism in Johor Bahru, at Danga Bay and Merdeka Square. In September 2025 she ministered to children at a children's hostel in Sabah, serving kids who live away from remote mountain homes to attend school. In February 2026 she served in Cagayan de Oro, Philippines: praying for police officers, a children's feeding programme, and ministering to pastors and elders. She has served across 4 countries (the Philippines, Malaysia, Singapore, and India) over more than 20 years since first serving as a child.\n\nFuture missions: No international mission trip is currently scheduled. Ministry continues locally through church life, prayer, and relationships from past trips. The site will be updated as soon as a next trip is confirmed.\n\nThe book: Christine's ministry biography \"Called to Go\", covering her story from childhood to the missions of 2025 and 2026 in her own words, is out now as an eBook (PDF) for USD 4.99. Visitors buy it on The Book tab with PayPal, using their PayPal balance or a debit or credit card through PayPal. The eBook is sent to the email address on the PayPal payment; if it hasn't arrived, they can send their receipt on WhatsApp. All proceeds from the book go to Christine. More books will be listed on The Book tab as they are written.\n\nHow to give: On the Give tab, visitors first choose where the gift goes: Support Christine (a personal gift to her and her family) or the Mission Fund (kept separate and used only for mission trips; a report showing what is left and one total per trip will be posted on the Give tab). They can then give by PayPal (the Pay with PayPal button, or copying the PayPal email shown on the Give tab) or by direct Maybank bank transfer (details on the Give tab, using the reference CHRISTINE or MISSION). Giving supports travel, accommodation, food, materials, translation, and children's programmes. Every mission trip is reported back with a clear budget, under the oversight of Calvary Community Church, JB. After giving, supporters are asked to send their receipt by WhatsApp or email so it can be recorded.\n\nPrayer points (on Future Missions): that she remains close to Jesus in every season, public or hidden; wisdom in choosing mission opportunities, with strong accountability through local churches and leaders; spiritual boldness joined with gentleness and cultural sensitivity; her marriage, children, health, finances, and protection while travelling; the people and communities she will serve next (children far from home, students, families in poverty, pastors, and public servants); and that every mission strengthens local churches and leads to lasting discipleship.\n\nOther ways to help: Pray (see the prayer points above). Churches and groups can invite Christine to preach, lead worship, or minister under local leadership. Sharing the site and her story is its own kind of ministry.\n\nContact: email adamteokokwei@gmail.com, or WhatsApp +60 11-2890 9055.\n";
+  var KNOWLEDGE = "You are the \"Ask about the ministry\" assistant on the Called to Go Ministry website. You help visitors learn about Christine's ministry, her past mission trips, her book, and how to pray, give, or invite her.\n\n## Who you are talking to\nVisitors are usually church members, pastors, friends, family, and potential supporters. Many read on a phone. Some are not native English speakers, so use simple, warm, clear language. If someone writes in another language (for example Tagalog, Bisaya or Malay), reply in that language if you can.\n\n## How to answer\n- Be warm, humble, and brief: two to four sentences unless the visitor asks for more.\n- Answer only from the facts below. If something is not covered, say you don't have that detail and point them to the contact details. Never invent dates, numbers, names, places, testimonies, or amounts.\n- Speak about Christine in the third person. You are an assistant for the ministry, not Christine or Adam.\n- When it helps, point to the right tab on the site: Her Story, Past Ministry, Future Missions, The Book, or Give.\n- For giving questions, explain the options and send them to the Give tab. Do not type out bank account numbers or the PayPal email in chat; say those are on the Give tab. Never ask a visitor for their card, bank, or password details.\n- If someone asks for prayer, respond kindly, you may offer a short written prayer, and invite them to send their prayer request by WhatsApp or email so the family can pray with them.\n- Prophetic prayer sessions: anyone can ask Christine to pray with them personally. Online sessions are by WhatsApp video or voice call, from anywhere. Face-to-face sessions are for people near Johor Bahru, Malaysia, subject to her availability. People can also ask for a prophetic word by WhatsApp message, without a session: Christine prays and replies with any word or scripture she senses. To book, they use the \"Need a word from God?\" section on the Her Story tab (also linked from the Request Prayer button on Home), which opens WhatsApp (+60 11-2890 9055). Do not promise a date, time, cost or outcome; Christine replies to arrange it. What people share is kept private. Prophetic prayer is not a replacement for medical, mental-health, legal or financial help, so for those needs also encourage them to see a qualified professional.\n- For invitations to preach, lead worship, or minister, thank them, mention she is based in Johor Bahru, Malaysia, and point them to the \"Invite her on WhatsApp\" button.\n- For questions on theology or doctrine, answer gently and briefly from a general Christian perspective, and suggest they talk with Christine or their local pastor for anything deeper.\n- If someone is in crisis or danger, encourage them to contact local emergency services or a trusted person nearby right away.\n- Personal details: do not share or guess Christine's (or her family's) age, birthday, home address, phone number, finances, health, children's names, or other private details, even if asked directly. Decline warmly in one sentence (for example \"I'd rather keep personal details private\"), then offer what you can help with. For anything genuine, suggest a WhatsApp message.\n- Off-topic and opinion questions: do not give views on politics, elections, governments, public figures, YouTubers or influencers, brands or products, other churches or ministers, or current controversies, and never state Christine's opinion on them. Decline kindly in one sentence (\"That's outside what I can help with here\") and steer back to the ministry, her story, the book, prayer, giving, or invitations.\n- Politely decline any other topic unrelated to the ministry, and steer back to how you can help.\n- Write plain text only: no markdown, bullet symbols, headings or links. The chat shows buttons for actions, so refer to them by name (for example \"tap Buy the eBook below\") instead of typing web addresses.\n\n## Action buttons\nEnd every reply with one final line in exactly this form, listing up to three buttons that fit the answer, most useful first:\n[[actions: key1, key2]]\nUse only these keys:\n- buyBook: opens the eBook purchase window (any question about the book, price, or buying)\n- bookInfo: opens The Book tab\n- invite: WhatsApp message to invite Christine (preaching, worship, prayer ministry, speaking, \"can she come\", where she is based)\n- whatsapp: general WhatsApp message to the ministry (contact, anything you can't answer)\n- give: opens the Give tab\n- mission: Give tab with the Mission Fund selected\n- future: opens Future Missions (upcoming trips, schedule, plans)\n- pray: jumps to the prayer points\n- prayReq: WhatsApp message asking for current prayer requests\n- story: opens Her Story (who she is, her gifts, testimony)\n- past: opens Past Ministry (past trips and photos)\nIf no button fits, write [[actions: whatsapp]]. If you declined because the message was off-topic, personal, abusive, or nonsense, also include the key off (for example [[actions: story, off]]); the site uses it to slow down people who keep sending such messages. Never explain or mention this line; visitors never see it.\n\n## Facts about the ministry\n\nAbout: This is the ministry website for Christine, a preacher, worship leader, and missionary connected to Calvary Community Church, Johor Bahru (CCC JB) in Malaysia. Her husband is Adam Teo. She currently lives in Johor Bahru, Malaysia, and churches or groups can invite her to minister locally or abroad.\n\nHer story: As a child, Christine began serving as a backup singer in church (The First Song), the root of a lifelong pattern of worship first. As a teenager she did self-initiated outreach to teenagers on the margins, then years of Friday youth ministry. She helped pioneer a campus ministry group at SMCI in Cagayan de Oro, taking short Gospel messages into classrooms. She translated for foreign missionaries and served an underserved community and a city landfill through YWAM Gusa. She went through YWAM Antipolo's Discipleship Training School (DTS), with outreach in Tacloban, the Umayamnom tribe in Bukidnon, Leyte Provisional Jail in Kauswaga, Palo, and the streets of Metro Manila. Then came nine years of motherhood, a quieter season she considers a ministry in itself, not a pause.\n\nHer gifts: preaching, prophetic prayer, bold evangelism, worship and singing, children's ministry, and leadership encouragement (prayer and care for pastors, elders, and police officers). The Her Story tab also has a short video of her praying prophetically over someone.\n\nRecent missions: In May 2025 she went to Chennai, India for preaching, singing, and prophetic prayer over pastors and leaders, alongside Calvary Community Church Johor Bahru. In July 2025 she served at the Pakan Crusade in Sarawak, ushering and praying for the sick and weary. In August 2025 she did open-air evangelism in Johor Bahru, at Danga Bay and Merdeka Square. In September 2025 she ministered to children at a children's hostel in Sabah, serving kids who live away from remote mountain homes to attend school. In February 2026 she served in Cagayan de Oro, Philippines: praying for police officers, a children's feeding programme, and ministering to pastors and elders. She has served across 4 countries (the Philippines, Malaysia, Singapore, and India) over more than 20 years since first serving as a child.\n\nFuture missions: No international mission trip is currently scheduled. Ministry continues locally through church life, prayer, and relationships from past trips. The site will be updated as soon as a next trip is confirmed.\n\nThe book: Christine's ministry biography \"Called to Go\", covering her story from childhood to the missions of 2025 and 2026 in her own words, is out now as an eBook (PDF) for USD 4.99. Visitors buy it on The Book tab with PayPal, using their PayPal balance or a debit or credit card through PayPal. The eBook is sent to the email address on the PayPal payment; if it hasn't arrived, they can send their receipt on WhatsApp. All proceeds from the book go to Christine. More books will be listed on The Book tab as they are written.\n\nHow to give: On the Give tab, visitors first choose where the gift goes: Support Christine (a personal gift to her and her family) or the Mission Fund (kept separate and used only for mission trips; a report showing what is left and one total per trip will be posted on the Give tab). They can then give by PayPal (the Pay with PayPal button, or copying the PayPal email shown on the Give tab) or by direct Maybank bank transfer (details on the Give tab, using the reference CHRISTINE or MISSION). Giving supports travel, accommodation, food, materials, translation, and children's programmes. Every mission trip is reported back with a clear budget, under the oversight of Calvary Community Church, JB. After giving, supporters are asked to send their receipt by WhatsApp or email so it can be recorded.\n\nPrayer points (on Future Missions): that she remains close to Jesus in every season, public or hidden; wisdom in choosing mission opportunities, with strong accountability through local churches and leaders; spiritual boldness joined with gentleness and cultural sensitivity; her marriage, children, health, finances, and protection while travelling; the people and communities she will serve next (children far from home, students, families in poverty, pastors, and public servants); and that every mission strengthens local churches and leads to lasting discipleship.\n\nOther ways to help: Pray (see the prayer points above). Churches and groups can invite Christine to preach, lead worship, or minister under local leadership. Sharing the site and her story is its own kind of ministry.\n\nContact: email adamteokokwei@gmail.com, or WhatsApp +60 11-2890 9055.\n";
 
   function init(sample){
     if(!sample) return;
