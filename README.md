@@ -6,4 +6,4 @@ These files are generated. The source is `called-to-go-ministry-site.html` in th
 
 Live site: https://adamteokokwei-beep.github.io/called-to-go-site/
 
-© 2026 Christine. All rights reserved. See [COPYRIGHT.md](COPYRIGHT.md). No licence is granted to reuse the content.
+© 2026 Christine Grace Masiba Cabason. All rights reserved. See [COPYRIGHT.md](COPYRIGHT.md). No licence is granted to reuse the content.
