@@ -111,11 +111,11 @@
   }
   .hero.hero-full::before{
     content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,.34) 0%, rgba(0,0,0,.14) 22%, rgba(0,0,0,.58) 55%, rgba(0,0,0,.82) 100%);
+    background:linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.04) 25%, rgba(0,0,0,.28) 60%, rgba(0,0,0,.62) 100%);
     pointer-events:none;
   }
   .hero.hero-full::after{
-    content:""; position:absolute; left:0; right:0; bottom:-1px; height:38vh; min-height:230px;
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:12vh; min-height:70px;
     background:linear-gradient(180deg, transparent, var(--paper) 90%);
     pointer-events:none;
   }
@@ -133,7 +133,14 @@
   .btn-outline-invert{border:1.5px solid #fff; color:#fff; background:rgba(10,8,6,.45); text-shadow:0 1px 6px rgba(0,0,0,.5); backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);}
   .btn-outline-invert:hover{background:#fff; color:#111; text-shadow:none;}
   @media (max-width:640px){ .hero.hero-full{min-height:74vh;} }
-  @media (prefers-reduced-motion: no-preference){ .hero-photo{transition:opacity .05s linear;} }
+  @media (max-width:640px){
+    /* Phones: photo on top so her face is never behind the text, text card below it */
+    .hero.hero-full{flex-direction:column; align-items:stretch; min-height:0;}
+    .hero-photo{position:relative; inset:auto; height:58vh; min-height:340px; flex:none;}
+    .hero.hero-full::before{bottom:auto; height:58vh; min-height:340px; background:linear-gradient(180deg, rgba(0,0,0,.18) 0%, transparent 25%, transparent 70%, #1C1712 100%);}
+    .hero-inner{margin-top:-56px; padding-bottom:56px;}
+    .hero.hero-full::after{height:56px; min-height:0;}
+  }
 
   .stats{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:14px; margin-top:48px;}
   .stat{background:var(--paper-card); border:1px solid var(--paper-line); border-radius:14px; padding:18px 16px; box-shadow:var(--shadow);}
@@ -1130,24 +1137,6 @@ var yrEl = document.getElementById('yr'); if(yrEl) yrEl.textContent = new Date()
   activate(panels[initial] ? initial : 'home', {scroll:false, pushHash:false});
 })();
 
-(function(){
-  var photo = document.getElementById('heroPhoto');
-  if(!photo) return;
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduceMotion) return;
-  var fadeDistance = 560;
-  var ticking = false;
-  function update(){
-    var y = window.scrollY || window.pageYOffset || 0;
-    var progress = Math.min(Math.max(y / fadeDistance, 0), 1);
-    photo.style.opacity = String(1 - progress * 0.62);
-    ticking = false;
-  }
-  window.addEventListener('scroll', function(){
-    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
-  }, {passive:true});
-  update();
-})();
 </script>
 
 
