@@ -668,13 +668,21 @@
   .prayer-ask p{margin:0; font-family:var(--font-body); font-style:normal; font-size:14px; line-height:1.55; color:#EDE4D3;}
   .prayer-own{font-size:13.5px; font-weight:600; color:var(--brass-soft); text-decoration:underline; text-underline-offset:3px;}
   .prayer-own:hover{color:#fff;}
+  .hero h1 .h1-tag{display:block; margin-top:10px; font-family:inherit; font-size:clamp(15px,1.6vw,19px); font-style:normal; font-weight:600; letter-spacing:.32em; text-transform:uppercase; opacity:.9;}
+  .about-faq{padding-block:56px 64px; max-width:860px;}
+  .about-faq h2{margin:8px 0 20px; text-wrap:balance;}
+  .faq-list{display:grid; gap:10px;}
+  .faq-list details{border:1px solid rgba(60,50,30,.16); border-radius:12px; padding:14px 18px; background:rgba(255,255,255,.55);}
+  .faq-list summary{cursor:pointer; font-weight:700; line-height:1.4;}
+  .faq-list details p{margin:10px 0 0; line-height:1.65;}
+
 </style>
 
 </head>
 <body>
 <header class="nav">
   <div class="nav-top">
-    <div class="nav-brand"><img class="brand-banner" src="img/a74924042497.webp" alt="CG Christine" width="1324" height="244" fetchpriority="high" srcset="img/a74924042497-720.webp 720w, img/a74924042497.webp 1324w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async"></div>
+    <div class="nav-brand"><img class="brand-banner" src="img/a74924042497.webp" alt="Called to Go Ministry logo" width="1324" height="244" fetchpriority="high" srcset="img/a74924042497-720.webp 720w, img/a74924042497.webp 1324w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async"></div>
   </div>
   <nav class="tabs-nav" role="tablist" aria-label="Site sections">
     <button class="tab-btn" role="tab" id="tab-home" aria-controls="panel-home" data-tab="home" aria-selected="true">Home</button>
@@ -691,11 +699,11 @@
 <!-- ============ HOME ============ -->
 <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
   <div class="hero hero-full">
-    <img class="hero-photo" id="heroPhoto" style="object-position:center 8%;" src="img/1392f4b1b76a.webp" alt="Christine" fetchpriority="high" srcset="img/1392f4b1b76a-720.webp 720w, img/1392f4b1b76a.webp 884w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async">
+    <img class="hero-photo" id="heroPhoto" style="object-position:center 8%;" src="img/1392f4b1b76a.webp" alt="Christine Cabason of Called to Go Ministry, Johor Bahru" fetchpriority="high" srcset="img/1392f4b1b76a-720.webp 720w, img/1392f4b1b76a.webp 884w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async">
     <div class="hero-inner">
       <div class="hero-textblock">
-        <span class="eyebrow">CALLED TO GO MINISTRY · PREACHER · WORSHIP LEADER · MISSIONARY</span>
-        <h1>Called<br>to <em>Go.</em></h1>
+        <span class="eyebrow">CHRISTIAN PREACHER · WORSHIP LEADER · MISSIONARY</span>
+        <h1>Called<br>to <em>Go.</em><span class="h1-tag">Ministry</span></h1>
         <p class="lead">Called to Go Ministry is the ministry of Christine Cabason, a Christian preacher, worship leader and missionary based in Johor Bahru, Malaysia, serving churches and communities at home and abroad. From singing backup in church as a child to preaching, praying and serving across churches, streets, prisons and mission fields, this is her story of saying yes to God's call.</p>
       </div>
       <div class="hero-ctas">
@@ -728,6 +736,17 @@
       <a class="btn btn-brass invite-cta" href="https://wa.me/601128909055?text=Hi%2C%20I%27d%20like%20to%20invite%20Christine%20to%20minister%20at%20our%20church%20or%20event." target="_blank" rel="noopener">Send an invitation on WhatsApp</a>
     </div>
   </div>
+  <div class="wrap about-faq">
+    <span class="eyebrow">ABOUT THE MINISTRY</span>
+    <h2>About Called to Go Ministry</h2>
+    <div class="faq-list">
+      <details open><summary>What is Called to Go Ministry?</summary><p>Called to Go Ministry is the ministry of Christine Grace Masiba Cabason, a Christian preacher, worship leader and missionary based in Johor Bahru, Malaysia. It shares her story, her mission work in the Philippines, Malaysia, Singapore and India, and her book <em>Called to Go</em>.</p></details>
+      <details><summary>Where is Called to Go Ministry based?</summary><p>In Johor Bahru, Johor, Malaysia. Christine serves churches, fellowships and Christian groups locally and abroad.</p></details>
+      <details><summary>Can I invite Christine to preach or lead worship at my church?</summary><p>Yes. Christine accepts invitations to preach, lead worship, pray and share her testimony, subject to availability. Send a message on WhatsApp to +60 11-2890 9055.</p></details>
+      <details><summary>Does Christine offer prophetic prayer?</summary><p>Yes. You can ask for a prophetic word by message, pray with her online, or meet face to face in Johor Bahru. See <a href="#prophetic-prayer" data-goto="story" data-target="prophetic-prayer">Need a word from God?</a></p></details>
+      <details><summary>How can I support Called to Go Ministry?</summary><p>Pray for the work ahead, give through PayPal or bank transfer on the <a href="#give" data-goto="give">Give</a> page, or buy Christine's book <em>Called to Go</em>.</p></details>
+    </div>
+  </div>
 </section>
 
 <!-- ============ HER STORY ============ -->
@@ -737,7 +756,7 @@
     <div class="bio-grid">
       <div>
         <div class="photo-slot photo-slot--portrait bio-photo is-filled">
-          <img src="img/b314b24b3bb3.webp" alt="Christine" loading="lazy" srcset="img/b314b24b3bb3-720.webp 720w, img/b314b24b3bb3.webp 876w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async">
+          <img src="img/b314b24b3bb3.webp" alt="Christine Cabason, preacher and worship leader" loading="lazy" srcset="img/b314b24b3bb3-720.webp 720w, img/b314b24b3bb3.webp 876w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async">
         </div>
         <p>Some ministry stories begin on a stage. Christine's began in a church, in a family, and in small acts of courage that happened long before anyone was watching. As a child, she was already learning to stand among worshippers and sing — not to be noticed, but to help point hearts toward God.</p>
         <p>That pattern never really changed. Over the years it has carried her from church music ministry into reaching teenagers other people avoided, from campus outreach into the slums and a landfill on the edge of a city, from months of formal missionary training into prisons, city streets, and an indigenous community far from home.</p>
