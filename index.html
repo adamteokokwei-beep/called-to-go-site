@@ -681,6 +681,19 @@
   .social-rail a:hover, .social-rail a:focus-visible{background:var(--brass); transform:translateX(2px);}
   .social-rail svg{width:20px; height:20px;}
   @media (max-width:640px){ .social-rail{padding:4px 3px;} .social-rail a{width:34px; height:34px;} .social-rail svg{width:17px; height:17px;} }
+  /* Hero photo: Christine sits on the right of the frame, so keep the text card narrow on the left and show the bottom of the photo */
+  .hero.hero-full{min-height:min(84vh, 900px);}
+  #heroPhoto{object-position:50% 100%;}
+  .hero-textblock{max-width:540px;}
+  .hero.hero-full::after{height:44px; min-height:0;}
+  @media (max-width:980px){
+    .hero.hero-full{flex-direction:column; align-items:stretch; min-height:0;}
+    .hero-photo{position:relative; inset:auto; height:58vh; min-height:340px; flex:none;}
+    .hero.hero-full::before{bottom:auto; height:58vh; min-height:340px; background:linear-gradient(180deg, rgba(0,0,0,.12) 0%, transparent 25%, transparent 78%, #1C1712 100%);}
+    .hero-inner{margin-top:-40px; padding-bottom:56px;}
+    .hero-textblock{max-width:none;}
+    #heroPhoto{object-position:88% 100%;}
+  }
 </style>
 
 </head>
@@ -704,7 +717,7 @@
 <!-- ============ HOME ============ -->
 <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
   <div class="hero hero-full">
-    <img class="hero-photo" id="heroPhoto" style="object-position:center 8%;" src="img/1392f4b1b76a.webp" alt="Christine Cabason of Called to Go Ministry, Johor Bahru" fetchpriority="high" srcset="img/1392f4b1b76a-720.webp 720w, img/1392f4b1b76a.webp 884w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async">
+    <img class="hero-photo" id="heroPhoto" src="img/7798f1d548b4.webp" alt="Christine Cabason of Called to Go Ministry sitting by a fountain" fetchpriority="high" decoding="async">
     <div class="hero-inner">
       <div class="hero-textblock">
         <span class="eyebrow">CHRISTIAN PREACHER · WORSHIP LEADER · MISSIONARY</span>
