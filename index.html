@@ -684,9 +684,9 @@
   /* Hero photo: on computers the photo fills the right half at close to its real size (sharp), text sits on the dark left half */
   @media (min-width:981px){
     .hero.hero-full{min-height:max(520px, min(calc(100vh - 220px), 680px));}
-    .hero-photo{left:auto; right:0; width:50%;}
+    .hero-photo{left:auto; right:0; width:60%; -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 14%, #000 36%); mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 14%, #000 36%);}
     #heroPhoto{object-position:34% 50%;}
-    .hero.hero-full::before{background:linear-gradient(90deg, #1C1712 0%, #1C1712 50%, rgba(28,23,18,.5) 53%, rgba(28,23,18,0) 60%);}
+    .hero.hero-full::before{background:linear-gradient(90deg, rgba(28,23,18,.35) 0%, rgba(28,23,18,0) 45%);}
     .hero-textblock{max-width:min(520px, calc(50vw - max(22px, 50vw - 518px) - 40px)); background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none; border:0; padding-left:0;}
     .hero-inner{padding-bottom:clamp(48px,10vh,96px);}
     .hero.hero-full::after{height:40px; min-height:0;}
