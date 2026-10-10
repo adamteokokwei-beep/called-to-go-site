@@ -700,6 +700,26 @@
     .hero-inner{margin-top:-40px; padding-bottom:56px;}
     #heroPhoto{object-position:38% 50%;}
   }
+  /* Phones: burger menu for the section tabs, smaller social rail */
+  .nav-burger{display:none;}
+  @media (max-width:760px){
+    .nav-top{padding:10px 16px; gap:10px;}
+    .nav-brand{flex:1; min-width:0; width:auto;}
+    .brand-banner{width:auto; max-width:100%; height:52px;}
+    .nav-burger{display:inline-flex; flex-direction:column; justify-content:center; gap:5px; width:46px; height:46px; flex:none; padding:0 12px; border-radius:12px; border:1.5px solid var(--paper-line); background:var(--paper-card);}
+    .nav-burger span{display:block; height:2.5px; border-radius:2px; background:var(--ink); transition:transform .2s, opacity .2s;}
+    header.nav.menu-open .nav-burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    header.nav.menu-open .nav-burger span:nth-child(2){opacity:0;}
+    header.nav.menu-open .nav-burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+    .tabs-nav{display:none; flex-direction:column; gap:4px; padding:4px 16px 14px;}
+    header.nav.menu-open .tabs-nav{display:flex;}
+    .tabs-nav .tab-btn{text-align:left; padding:13px 16px; font-size:15px; border-radius:12px;}
+    .tabs-nav .tab-btn.give-btn{margin-left:0; text-align:center;}
+    .social-rail{padding:3px 2px; gap:0; border-radius:0 10px 10px 0; background:rgba(43,36,29,.78);}
+    .social-rail a{width:28px; height:28px; border-radius:7px;}
+    .social-rail svg{width:14px; height:14px;}
+    body.menu-open .social-rail{display:none;}
+  }
 </style>
 
 </head>
@@ -707,8 +727,9 @@
 <header class="nav">
   <div class="nav-top">
     <div class="nav-brand"><img class="brand-banner" src="img/a74924042497.webp" alt="Called to Go Ministry logo" width="1324" height="244" fetchpriority="high" srcset="img/a74924042497-720.webp 720w, img/a74924042497.webp 1324w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async"></div>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteTabs"><span></span><span></span><span></span></button>
   </div>
-  <nav class="tabs-nav" role="tablist" aria-label="Site sections">
+  <nav class="tabs-nav" id="siteTabs" role="tablist" aria-label="Site sections">
     <button class="tab-btn" role="tab" id="tab-home" aria-controls="panel-home" data-tab="home" aria-selected="true">Home</button>
     <button class="tab-btn" role="tab" id="tab-story" aria-controls="panel-story" data-tab="story" aria-selected="false">Her Story</button>
     <button class="tab-btn" role="tab" id="tab-past" aria-controls="panel-past" data-tab="past" aria-selected="false">Past Ministry</button>
@@ -1834,6 +1855,17 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       navigator.clipboard.writeText(addr).then(done, function(){ show('Email us at ' + addr); });
     } catch(err){ show('Email us at ' + addr); }
   });
+})();
+</script>
+<script>
+(function(){
+  var head=document.querySelector('header.nav'), btn=head&&head.querySelector('.nav-burger');
+  if(!btn) return;
+  function setOpen(o){ head.classList.toggle('menu-open',o); document.body.classList.toggle('menu-open',o); btn.setAttribute('aria-expanded',o?'true':'false'); btn.setAttribute('aria-label',o?'Close menu':'Open menu'); }
+  btn.addEventListener('click',function(){ setOpen(!head.classList.contains('menu-open')); });
+  head.querySelectorAll('.tab-btn').forEach(function(t){ t.addEventListener('click',function(){ setOpen(false); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') setOpen(false); });
+  document.addEventListener('click',function(e){ if(head.classList.contains('menu-open') && !head.contains(e.target)) setOpen(false); });
 })();
 </script>
 </body></html>
