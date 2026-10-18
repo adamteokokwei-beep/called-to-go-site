@@ -28,7 +28,7 @@
 <style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700;800&family=Special+Elite&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700;800&family=Special+Elite&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Special+Elite&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Special+Elite&display=swap"></noscript>
 <style>
   :root{
     --ink:#2B241D; --ink-2:#5C5145; --ink-3:#6F6555;
@@ -718,6 +718,52 @@
     .social-rail svg{width:14px; height:14px;}
     body.menu-open .social-rail{display:none;}
   }
+
+  /* =================== APPLE-STYLE THEME (light, clean, big type; terracotta kept as accent) =================== */
+  :root{
+    --paper:#FFFFFF; --paper-alt:#F5F5F7; --paper-card:#FFFFFF; --paper-line:#E8E8ED;
+    --ink:#1D1D1F; --ink-2:#424245; --ink-3:#6E6E73;
+    --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",system-ui,sans-serif;
+    --font-stamp:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",system-ui,sans-serif;
+    --shadow:0 4px 24px rgba(0,0,0,.06); --radius:20px;
+  }
+  body{background:#fff; color:var(--ink); letter-spacing:-.011em; font-size:17px;}
+  h1,h2,h3,h4{font-weight:700; letter-spacing:-.025em;}
+  .eyebrow{font-family:var(--font-body); font-size:14px; font-weight:600; letter-spacing:0; text-transform:none; color:var(--brass);}
+  header.nav{background:rgba(255,255,255,.72); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border-bottom:0; box-shadow:0 1px 0 rgba(0,0,0,.08);}
+  .tab-btn{font-weight:500; font-family:var(--font-body);}
+  .tab-btn[aria-selected="true"]{background:var(--ink); color:#fff;}
+  .btn{font-weight:600; font-family:var(--font-body); letter-spacing:-.01em;}
+  /* hero: keep her photo, cleaner type */
+  .hero-full h1{font-size:clamp(48px,8vw,96px)!important; line-height:1!important; letter-spacing:-.04em; font-weight:700;}
+  .hero-full h1 em{font-family:var(--font-display);}
+  .hero-full .eyebrow{color:rgba(255,255,255,.85)!important; font-size:14px; letter-spacing:0; text-transform:none;}
+  .hero-full p.lead{font-size:19px!important; line-height:1.5!important;}
+  .hero h1 .h1-tag{letter-spacing:.2em; font-weight:600;}
+  /* sections: generous space, soft grey bands, borderless rounded cards */
+  .stat{border:0!important; background:var(--paper-alt)!important; box-shadow:none!important; border-radius:22px!important; padding:24px 22px!important;}
+  .stat .n{font-family:var(--font-display); font-size:44px!important; letter-spacing:-.04em; color:var(--ink)!important; line-height:1;}
+  .stat .l{font-size:14px!important; color:var(--ink-3)!important; margin-top:8px!important;}
+  .invite-band{background:var(--paper-alt)!important; border-top:0!important; padding-block:clamp(64px,8vw,104px)!important;}
+  .invite-copy h2{font-family:var(--font-display)!important; font-size:clamp(34px,4.6vw,56px)!important; letter-spacing:-.035em; line-height:1.05!important;}
+  .invite-list li{border:0!important; background:#fff!important; font-weight:500!important;}
+  .faq-list details{border:0!important; background:var(--paper-alt)!important; border-radius:18px!important; padding:18px 22px!important;}
+  .faq-list summary{font-weight:600!important;}
+  .social-rail{background:rgba(255,255,255,.8)!important; -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px); box-shadow:0 4px 24px rgba(0,0,0,.12)!important;}
+  .social-rail a{color:var(--ink)!important;}
+
+
+  /* bigger page headings, light frosted footer bar */
+  .tab-panel h2{font-size:clamp(32px,4.2vw,52px); letter-spacing:-.035em; line-height:1.06;}
+  .tab-panel .gift-card h3, .tab-panel h3{letter-spacing:-.02em;}
+  .float-foot{background:rgba(255,255,255,.78)!important; -webkit-backdrop-filter:saturate(180%) blur(20px)!important; backdrop-filter:saturate(180%) blur(20px)!important; border-top:0!important; box-shadow:0 -1px 0 rgba(0,0,0,.08);}
+  .ff-inner, .ff-item{color:var(--ink-3)!important;}
+  .ff-brand{color:var(--ink)!important;}
+  .ff-sep{background:rgba(0,0,0,.12)!important;}
+  a.ff-item:hover{color:var(--ink)!important;}
+  .ff-tip{background:var(--ink); color:#fff;}
+  .ff-tip::after{border-top-color:var(--ink);}
 </style>
 
 </head>
