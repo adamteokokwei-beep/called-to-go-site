@@ -1085,7 +1085,7 @@
       <p>Adam manages this website. For questions about your information or to request a correction or deletion, email <a href="mailto:adamteokokwei@gmail.com">adamteokokwei@gmail.com</a>. Tell us which message or transaction your request concerns; do not send passwords or full bank details.</p>
       <h3>Chat assistant</h3>
       <p>The chat uses AI and can make mistakes. When you send a question, your message and the conversation so far are sent to our Cloudflare-hosted service and Google Gemini to generate an answer. Avoid sharing private prayer details, health information, payment details or passwords here. Use WhatsApp or email to contact the ministry personally.</p>
-      <p>The page holds the conversation in memory while it is open. A local browser record is used to limit repeated misuse. Service logging is enabled on the chatbot service; the exact log contents and retention period still need confirming. We cannot currently promise that messages are never logged.</p>
+      <p>The page holds the conversation in memory while it is open. A local browser record is used to limit repeated misuse. Cloudflare invocation and error logging is enabled. Some error paths can log snippets of Google responses. Cloudflare currently documents 3-day log retention for the Free Workers plan used here. Google may retain data under its own service and abuse-monitoring policies; this project’s Google settings have not yet been verified. Do not treat this chat as confidential.</p>
       <h3>Orders, gifts and personal messages</h3>
       <p>PayPal processes online payments. We use the payment information available to us, including your email address and transaction reference, to deliver the book or match a gift. WhatsApp and email messages are handled through those services. Please share only what is needed for your request.</p>
       <h3>Videos and other services</h3>
@@ -1261,7 +1261,7 @@
     <p class="chat-privacy" id="chatPrivacy">AI answers may be inaccurate. Questions and chat history are sent to Cloudflare and Google Gemini. Avoid private details. <a href="#privacy" data-goto="book" data-target="privacy">Privacy information</a></p>
     <form id="chatForm" class="chat-form">
       <label class="sr-only" for="chatInput">Your question about the ministry</label>
-      <input id="chatInput" aria-describedby="chatPrivacy" maxlength="2000" type="text" placeholder="Ask a question" autocomplete="off">
+      <input id="chatInput" aria-describedby="chatPrivacy" maxlength="1000" type="text" placeholder="Ask a question" autocomplete="off">
       <button type="submit" id="chatSendBtn" class="chat-send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
   </div>
