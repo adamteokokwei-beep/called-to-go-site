@@ -768,41 +768,23 @@
   .ff-tip{background:var(--ink); color:#fff;}
   .ff-tip::after{border-top-color:var(--ink);}
 
-  /* Homepage refinement: preserve the established hero; give prayer room below it. */
-  #heroPhoto{transform:translate3d(0,var(--hero-depth,0px),0) scale(1.06); transform-origin:43% 78%;}
-  .home-prayer{scroll-margin-top:164px; padding:76px 0; background:#344A3C; color:#FAF7F0;}
-  .home-prayer .wrap,.home-moments .wrap{padding-inline:clamp(44px,5vw,64px);}
-  .home-prayer-grid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr); gap:clamp(28px,6vw,76px); align-items:center;}
-  #panel-home .home-prayer h2{font-size:clamp(30px,4.2vw,48px); line-height:1.12; max-width:18ch; margin:0 0 22px; color:#FAF7F0;}
-  .home-prayer p{max-width:54ch; font-size:17px; line-height:1.7; color:#EBEEDF; margin:0 0 26px;}
-  .home-prayer .btn{background:#FAF7F0; color:#293F31; border-color:#FAF7F0; text-decoration:none;}
-  .home-prayer .btn:hover{background:#E4EAD8; border-color:#E4EAD8;}
-  .home-prayer figure{margin:0; max-width:340px; justify-self:end; width:100%;}
-  .home-prayer img{width:100%; height:auto; aspect-ratio:4/4.3; object-fit:cover; object-position:50% 28%; border-radius:16px;}
-  .home-prayer figcaption{font-size:13px; color:#EBEEDF; line-height:1.5; margin-top:12px;}
-  .home-moments{padding:80px 0 24px;}
-  .home-moments-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.7fr); gap:clamp(28px,6vw,72px); align-items:center;}
-  .home-moments figure{margin:0;}
-  .home-moments .prayer-moment{width:100%; height:clamp(340px,44vw,480px); object-fit:cover; object-position:50% 42%; border-radius:16px;}
-  #panel-home .home-moments h2{font-size:clamp(30px,3.8vw,44px); line-height:1.15; margin:0 0 20px;}
-  .home-moments p{font-size:17px; line-height:1.7; margin:0 0 22px; max-width:46ch; color:var(--ink-2);}
-  .home-moments figcaption{font-size:13px; color:var(--ink-2); line-height:1.5; margin-top:12px;}
-  .home-moments a{font-weight:600; text-underline-offset:5px; text-decoration-thickness:1px;}
-  .btn,.card-cta,.receipt-btn,.tab-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease;}
-  .btn:active,.receipt-btn:active{filter:brightness(.94);}
-  .home-moments a:hover,.home-moments a:focus-visible{color:var(--brass-deep); text-decoration-thickness:2px;}
-  .home-prayer a:focus-visible{outline:3px solid #FAF7F0; outline-offset:5px;}
-  @media (prefers-reduced-motion:no-preference){
-    #panel-home .hero-textblock h1{animation:homeHeadline .65s cubic-bezier(.16,1,.3,1) both;}
-    @keyframes homeHeadline{from{opacity:.85; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
-  }
-  @media (max-width:760px){
-    .home-prayer{scroll-margin-top:88px; padding:48px 0;}
-    .home-prayer-grid,.home-moments-grid{grid-template-columns:1fr; gap:30px;}
-    .home-prayer figure{justify-self:start; max-width:240px;}
-    .home-moments{padding:48px 0 12px;}
-    .home-moments .prayer-moment{height:380px;}
-  }
+  /* Songs follows the existing site theme; the original homepage is unchanged. */
+  .song-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,320px);gap:clamp(28px,6vw,72px);align-items:center;max-width:850px;margin:0 auto;}
+  .song-copy h2{margin:0 0 16px;}
+  .song-copy p{font-size:17px;line-height:1.7;color:var(--ink-2);margin-bottom:22px;}
+  .song-player{position:relative;width:100%;aspect-ratio:9/16;max-height:570px;background:#1D1D1F;overflow:hidden;border-radius:16px;}
+  .song-player iframe{display:block;width:100%;height:100%;border:0;}
+  .song-load{position:absolute;inset:0;width:100%;border:0;padding:0;background:#1D1D1F;color:#fff;}
+  .song-load img{width:100%;height:100%;object-fit:cover;opacity:.7;}
+  .song-load-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;font-size:17px;font-weight:700;text-shadow:0 1px 6px #000;}
+  .song-load-label svg{width:58px;height:58px;fill:#fff;filter:drop-shadow(0 2px 8px rgba(0,0,0,.45));}
+  .song-load:hover img{opacity:.85;}
+  .song-load:focus-visible{outline:3px solid #fff;outline-offset:-6px;}
+  .chat-privacy{padding:8px 14px;font-size:12px;line-height:1.5;color:var(--ink-2);background:var(--paper-card);}
+  .chat-privacy a{text-decoration:underline;}
+  .copyright-note h3{margin:24px 0 10px;}
+  .song-note{font-size:13px!important;margin-top:18px;}
+  @media(max-width:760px){.song-layout{grid-template-columns:1fr;max-width:480px;}.song-player{max-width:300px;justify-self:center;}.song-copy{padding-inline:18px;}}
 
 </style>
 
@@ -819,6 +801,7 @@
     <button class="tab-btn" role="tab" id="tab-story" aria-controls="panel-story" data-tab="story" aria-selected="false">Her Story</button>
     <button class="tab-btn" role="tab" id="tab-past" aria-controls="panel-past" data-tab="past" aria-selected="false">Past Ministry</button>
     <button class="tab-btn" role="tab" id="tab-future" aria-controls="panel-future" data-tab="future" aria-selected="false">Future Missions</button>
+    <button class="tab-btn" role="tab" id="tab-songs" aria-controls="panel-songs" data-tab="songs" aria-selected="false">Songs</button>
     <button class="tab-btn" role="tab" id="tab-book" aria-controls="panel-book" data-tab="book" aria-selected="false">The Book</button>
     <button class="tab-btn give-btn" role="tab" id="tab-give" aria-controls="panel-give" data-tab="give" aria-selected="false">Give</button>
   </nav>
@@ -844,34 +827,6 @@
       </div>
     </div>
   </div>
-
-  <section class="home-prayer" id="home-prayer" aria-labelledby="homePrayerTitle">
-    <div class="wrap home-prayer-grid">
-      <div>
-        <h2 id="homePrayerTitle">A moment for prayer. A place for encouragement.</h2>
-        <p>Prophetic prayer and worship are at the heart of Christine's ministry. If you are facing a decision, walking through a difficult season, or looking for encouragement, you can connect with her for prayer.</p>
-        <a class="btn" href="#prophetic-prayer" data-goto="story" data-target="prophetic-prayer">Request Prayer <span aria-hidden="true">&rarr;</span></a>
-      </div>
-      <figure>
-        <img src="img/37399b22fb9d.webp" alt="Christine Cabason" width="912" height="900" loading="lazy" decoding="async">
-        <figcaption>Christine Cabason &middot; Johor Bahru, Malaysia</figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="home-moments" aria-labelledby="homeMomentsTitle">
-    <div class="wrap home-moments-grid">
-      <figure>
-        <img class="prayer-moment" src="img/58763fefa233.webp" alt="Christine offering prophetic prayer for Pastor Jesse Ubay Ubay" width="787" height="1400" loading="lazy" decoding="async">
-        <figcaption>A moment of prophetic prayer in Cagayan de Oro, Philippines.</figcaption>
-      </figure>
-      <div>
-        <h2 id="homeMomentsTitle">Prayer, worship, and a willing heart.</h2>
-        <p>From worship in church to personal moments of prayer, Christine's ministry is rooted in her faith in Jesus and her care for people.</p>
-        <p>Churches and groups can get in touch about worship and prayer ministry, locally or abroad, subject to availability.</p>
-        <a href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20invite%20you%20for%20worship%20and%20prayer%20ministry." target="_blank" rel="noopener">Invite Christine for worship and prayer <span aria-hidden="true">&rarr;</span></a>
-      </div>
-    </div>
-  </section>
 
   <div class="hero">
     <div class="wrap stats">
@@ -1089,6 +1044,28 @@
   </div>
 </section>
 
+<!-- ============ SONGS ============ -->
+<section class="tab-panel" id="panel-songs" role="tabpanel" aria-labelledby="tab-songs" hidden>
+  <div class="wrap song-layout">
+    <div class="song-copy">
+      <h2>Her songs</h2>
+      <h3>Everyday Is Christmas</h3>
+      <p lang="zh">每一天是圣诞节</p>
+      <p>Listen to Christine's Chinese Christmas song.</p>
+      <p>Coming soon to Apple Music and Spotify.</p>
+      <p>Shorter or acoustic versions are also available on Facebook, Instagram, TikTok and YouTube.</p>
+      <a class="btn btn-brass" href="https://www.youtube.com/shorts/guNQ0ZcwlE8" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">&rarr;</span></a>
+      <p class="song-note">Play here or watch on YouTube.</p>
+    </div>
+    <div class="song-player" id="christmasSongPlayer">
+      <button class="song-load" id="loadChristmasSong" type="button" aria-label="Play Everyday Is Christmas by Christine">
+        <img src="https://i.ytimg.com/vi/guNQ0ZcwlE8/hqdefault.jpg" alt="" loading="lazy" decoding="async">
+        <span class="song-load-label"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="2"/><path d="M26 20v24l20-12z"/></svg>Play</span>
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ THE BOOK ============ -->
 <section class="tab-panel" id="panel-book" role="tabpanel" aria-labelledby="tab-book" hidden>
   <div class="wrap">
@@ -1101,6 +1078,19 @@
       <p>Every title from the ministry. Tap a book to see the details and how to get a copy. All proceeds from the book go to Christine.</p>
     </div>
     <div class="catalogue" id="bookCatalogue"></div>
+
+    <div class="copyright-note" id="privacy">
+      <h2>Privacy and your information</h2>
+      <p>Last updated: 28 October 2026.</p>
+      <p>Adam manages this website. For questions about your information or to request a correction or deletion, email <a href="mailto:adamteokokwei@gmail.com">adamteokokwei@gmail.com</a>. Tell us which message or transaction your request concerns; do not send passwords or full bank details.</p>
+      <h3>Chat assistant</h3>
+      <p>The chat uses AI and can make mistakes. When you send a question, your message and the conversation so far are sent to our Cloudflare-hosted service and Google Gemini to generate an answer. Avoid sharing private prayer details, health information, payment details or passwords here. Use WhatsApp or email to contact the ministry personally.</p>
+      <p>The page holds the conversation in memory while it is open. A local browser record is used to limit repeated misuse. Service logging is enabled on the chatbot service; the exact log contents and retention period still need confirming. We cannot currently promise that messages are never logged.</p>
+      <h3>Orders, gifts and personal messages</h3>
+      <p>PayPal processes online payments. We use the payment information available to us, including your email address and transaction reference, to deliver the book or match a gift. WhatsApp and email messages are handled through those services. Please share only what is needed for your request.</p>
+      <h3>Videos and other services</h3>
+      <p>This site loads fonts from Google Fonts and song artwork from YouTube. Playing a song loads the YouTube player. These services receive connection information such as your IP address and may use their own cookies or storage. Social links open the named service, where its own privacy terms apply.</p>
+    </div>
 
     <div class="copyright-note" id="copyright">
       <span class="eyebrow">COPYRIGHT &amp; USE</span>
@@ -1133,7 +1123,7 @@
       </button>
       <button type="button" class="fund-opt" role="radio" aria-checked="false" data-fund="mission">
         <span class="dot" aria-hidden="true"></span>
-        <span><span class="t">Mission Fund</span><span class="d">Kept separate and used only for mission trips: travel, accommodation, meals, and programme materials.</span></span>
+        <span><span class="t">Mission Fund</span><span class="d">Accepting gifts for future mission trips: travel, accommodation, meals, and programme materials. Kept separate from personal support.</span></span>
       </button>
     </div>
 
@@ -1171,7 +1161,7 @@
     </div>
     <div class="gp-step"><span class="gp-num">3</span><h3>Send us your receipt</h3></div>
     <div class="receipt-note">
-      <div class="receipt-note-text">A quick screenshot helps us keep an honest, complete record of every gift, and tells us which fund it belongs to.</div>
+      <div class="receipt-note-text">Send the amount, payment date, transaction reference and chosen fund so we can match your gift. Hide your balance, account number and unrelated transactions in any screenshot.</div>
       <div class="receipt-note-actions">
         <a class="receipt-btn" id="receiptWhatsapp" href="https://wa.me/601128909055?text=Hi%2C%20here%27s%20my%20giving%20receipt%20(Support%20Christine)%20for%20Called%20to%20Go%20Ministry%3A" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Send via WhatsApp</a>
         <a class="receipt-btn" id="receiptEmail" href="mailto:adamteokokwei@gmail.com?subject=Giving%20receipt%20(Support%20Christine)%20-%20Called%20to%20Go%20Ministry"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Send via Email</a>
@@ -1244,6 +1234,7 @@
   <div class="ff-inner">
     <a class="ff-brand" href="#copyright" data-goto="book" data-target="copyright" data-tip="Copyright and use">© 2026 Christine <span class="ff-label">Grace Masiba </span>Cabason<span class="ff-label">. All rights reserved.</span></a>
     <span class="ff-sep" aria-hidden="true"></span>
+    <a class="ff-item" href="#privacy" data-goto="book" data-target="privacy">Privacy</a>
     <span class="ff-item ff-place">Johor Bahru, Malaysia</span>
     <a class="ff-item" href="mailto:adamteokokwei@gmail.com" aria-label="Email adamteokokwei@gmail.com" data-tip="Email us"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span class="ff-label">adamteokokwei@gmail.com</span></a>
     <a class="ff-item" href="https://wa.me/601128909055" target="_blank" rel="noopener" aria-label="WhatsApp +60 11-2890 9055" data-tip="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="ff-label">+60 11-2890 9055</span></a>
@@ -1267,9 +1258,10 @@
     </div>
     <div id="chatMessages" class="chat-messages" role="log" aria-label="Conversation" aria-live="off"></div>
     <div id="chatStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+    <p class="chat-privacy" id="chatPrivacy">AI answers may be inaccurate. Questions and chat history are sent to Cloudflare and Google Gemini. Avoid private details. <a href="#privacy" data-goto="book" data-target="privacy">Privacy information</a></p>
     <form id="chatForm" class="chat-form">
       <label class="sr-only" for="chatInput">Your question about the ministry</label>
-      <input id="chatInput" type="text" placeholder="Ask a question" autocomplete="off">
+      <input id="chatInput" aria-describedby="chatPrivacy" maxlength="2000" type="text" placeholder="Ask a question" autocomplete="off">
       <button type="submit" id="chatSendBtn" class="chat-send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
   </div>
@@ -1430,7 +1422,7 @@ var MISSION_FUND = {
     '<div class="book-copy">' + statusHtml(top) +
     '<h2 style="margin:14px 0 16px;">' + esc(top.blurb) + '</h2>' +
     '<p>' + esc(top.description) + '</p>' +
-    (isAvail(top) ? '<div class="book-facts"><span><span class="price">' + esc(top.currency) + ' ' + esc(top.price) + '</span></span><span>' + esc(top.format) + '</span></div><p class="book-note">Available as an eBook only for now. After you pay, the eBook is sent to your email. All proceeds from the book go to Christine.</p>' : '<p>It isn\'t ready yet. Tap below to hear the moment it is.</p>') +
+    (isAvail(top) ? '<div class="book-facts"><span><span class="price">' + esc(top.currency) + ' ' + esc(top.price) + '</span></span><span>' + esc(top.format) + '</span></div><p class="book-note">Available as an eBook only for now. After payment is confirmed, we manually email the PDF to the email address on your PayPal payment. Please allow up to 2 working days after payment confirmation. All proceeds from the book go to Christine.</p>' : '<p>It isn\'t ready yet. Tap below to hear the moment it is.</p>') +
     '<div class="book-actions"><button type="button" class="btn btn-brass" data-book="' + esc(top.id) + '">' + (isAvail(top) ? 'Buy the eBook' : 'Get notified') + '</button>' +
     '<button type="button" class="btn btn-outline" data-book="' + esc(top.id) + '">Book details</button></div></div>';
 
@@ -1446,10 +1438,10 @@ var MISSION_FUND = {
     if(!b) return;
     var buy;
     if(isAvail(b)){
-      buy = '<div class="buy-box"><div class="price-row"><span class="amt">' + esc(b.currency) + ' ' + esc(b.price) + '</span><span class="fmt">' + esc(b.format) + '<br>Digital download</span></div>' +
+      buy = '<div class="buy-box"><div class="price-row"><span class="amt">' + esc(b.currency) + ' ' + esc(b.price) + '</span><span class="fmt">' + esc(b.format) + '<br>PDF by email</span></div>' +
         '<a class="paypal-pay-btn" href="' + esc(paypalUrl(b)) + '" target="_blank" rel="noopener"><span class="pp-mark">Buy with <span>Pay</span><span class="pp-light">Pal</span></span></a>' +
         '<p class="paypal-note">Pay with your PayPal balance, or with a debit or credit card through PayPal. All proceeds from the book go to Christine.</p>' +
-        '<ol class="delivery"><li>Pay the exact amount through PayPal.</li><li>We send the eBook to the email address on your PayPal payment.</li><li>Not received it? Send your receipt on WhatsApp to +60 11-2890 9055.</li></ol>' +
+        '<ol class="delivery"><li>Pay the exact amount through PayPal.</li><li>After confirming payment, we manually email the PDF to the email address on your PayPal payment. Please allow up to 2 working days after payment confirmation.</li><li>Check your spam folder. For delivery help, send your payment reference on WhatsApp to +60 11-2890 9055 or email adamteokokwei@gmail.com. Hide unrelated financial details.</li></ol>' +
         '<p class="personal-use">Your copy is for your own personal reading. Please don\u2019t forward the file or upload it anywhere; if a friend would like to read it, send them here so their copy supports Christine too. <a href="#copyright" data-close-goto="copyright">Copyright and use</a></p></div>';
     } else {
       buy = '<div class="buy-box"><p style="font-size:14px; color:var(--ink-2); margin-bottom:12px;">This book is still being written. Leave your details and we will let you know when it is ready.</p>' +
@@ -1483,7 +1475,7 @@ var MISSION_FUND = {
   var f = MISSION_FUND;
   if(fundBody){
     if(f.available == null && !f.missions.length){
-      fundBody.innerHTML = '<div class="fund-empty" style="margin-top:18px;">The first report will appear here once the Mission Fund opens: the amount available for the next mission, and one total per trip.</div>';
+      fundBody.innerHTML = '<div class="fund-empty" style="margin-top:18px;">The Mission Fund is accepting gifts for future mission trips. No international trip is currently scheduled. A current balance and trip spending report have not yet been published; contact us if you would like an update before giving.</div>';
     } else {
       var spent = f.missions.reduce(function(a, m){ return a + Number(m.spent || 0); }, 0);
       fundBody.innerHTML = '<div class="fund-figs">' +
@@ -1504,7 +1496,7 @@ var MISSION_FUND = {
   var opts = Array.prototype.slice.call(document.querySelectorAll('.fund-opt'));
   function pickFund(key){
     var fund = FUNDS[key];
-    opts.forEach(function(o){ o.setAttribute('aria-checked', o.getAttribute('data-fund') === key ? 'true' : 'false'); });
+    opts.forEach(function(o){ var selected = o.getAttribute('data-fund') === key; o.setAttribute('aria-checked', selected ? 'true' : 'false'); o.tabIndex = selected ? 0 : -1; });
     var report = document.getElementById('missionFundReport');
     if(report) report.hidden = key !== 'mission';
     document.querySelectorAll('[data-fund-label]').forEach(function(el){ el.textContent = 'Giving to: ' + fund.label; });
@@ -1524,6 +1516,8 @@ var MISSION_FUND = {
       }
     });
   });
+
+  pickFund('personal');
 
   /* ---------- share: copy the site link ---------- */
   var shareBtn = document.getElementById('shareLinkBtn');
@@ -1620,7 +1614,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
   // Never put an API key here: this file is public.
   var CHAT_API_URL = 'https://called-to-go-chatbot.adamteokokwei.workers.dev';
 
-  var KNOWLEDGE = "You are the \"Ask about the ministry\" assistant on the Called to Go Ministry website. You help visitors learn about Christine's ministry, her past mission trips, her book, and how to pray, give, or invite her.\n\n## Who you are talking to\nVisitors are usually church members, pastors, friends, family, and potential supporters. Many read on a phone. Some are not native English speakers, so use simple, warm, clear language. If someone writes in another language (for example Tagalog, Bisaya or Malay), reply in that language if you can.\n\n## How to answer\n- Be warm, humble, and brief: two to four sentences unless the visitor asks for more.\n- Answer only from the facts below. If something is not covered, say you don't have that detail and point them to the contact details. Never invent dates, numbers, names, places, testimonies, or amounts.\n- Speak about Christine in the third person. You are an assistant for the ministry, not Christine or Adam.\n- When it helps, point to the right tab on the site: Her Story, Past Ministry, Future Missions, The Book, or Give.\n- For giving questions, explain the options and send them to the Give tab. Do not type out bank account numbers or the PayPal email in chat; say those are on the Give tab. Never ask a visitor for their card, bank, or password details.\n- If someone asks for prayer, respond kindly, you may offer a short written prayer, and invite them to send their prayer request by WhatsApp or email so the family can pray with them.\n- Prophetic prayer sessions: anyone can ask Christine to pray with them personally. Online sessions are by WhatsApp video or voice call, from anywhere. Face-to-face sessions are for people near Johor Bahru, Malaysia, subject to her availability. People can also ask for a prophetic word by WhatsApp message, without a session: Christine prays and replies with any word or scripture she senses. To book, they use the \"Need a word from God?\" section on the Her Story tab (also linked from the Request Prayer button on Home), which opens WhatsApp (+60 11-2890 9055). Do not promise a date, time, cost or outcome; Christine replies to arrange it. What people share is kept private. Prophetic prayer is not a replacement for medical, mental-health, legal or financial help, so for those needs also encourage them to see a qualified professional.\n- For invitations to preach, lead worship, or minister, thank them, mention she is based in Johor Bahru, Malaysia, and point them to the \"Invite her on WhatsApp\" button.\n- For questions on theology or doctrine, answer gently and briefly from a general Christian perspective, and suggest they talk with Christine or their local pastor for anything deeper.\n- If someone is in crisis or danger, encourage them to contact local emergency services or a trusted person nearby right away.\n- Personal details: do not share or guess Christine's (or her family's) age, birthday, home address, phone number, finances, health, children's names, or other private details, even if asked directly. Decline warmly in one sentence (for example \"I'd rather keep personal details private\"), then offer what you can help with. For anything genuine, suggest a WhatsApp message.\n- Off-topic and opinion questions: do not give views on politics, elections, governments, public figures, YouTubers or influencers, brands or products, other churches or ministers, or current controversies, and never state Christine's opinion on them. Decline kindly in one sentence (\"That's outside what I can help with here\") and steer back to the ministry, her story, the book, prayer, giving, or invitations.\n- Politely decline any other topic unrelated to the ministry, and steer back to how you can help.\n- Write plain text only: no markdown, bullet symbols, headings or links. The chat shows buttons for actions, so refer to them by name (for example \"tap Buy the eBook below\") instead of typing web addresses.\n\n## Action buttons\nEnd every reply with one final line in exactly this form, listing up to three buttons that fit the answer, most useful first:\n[[actions: key1, key2]]\nUse only these keys:\n- buyBook: opens the eBook purchase window (any question about the book, price, or buying)\n- bookInfo: opens The Book tab\n- invite: WhatsApp message to invite Christine (preaching, worship, prayer ministry, speaking, \"can she come\", where she is based)\n- whatsapp: general WhatsApp message to the ministry (contact, anything you can't answer)\n- give: opens the Give tab\n- mission: Give tab with the Mission Fund selected\n- future: opens Future Missions (upcoming trips, schedule, plans)\n- pray: jumps to the prayer points\n- prayReq: WhatsApp message asking for current prayer requests\n- story: opens Her Story (who she is, her gifts, testimony)\n- past: opens Past Ministry (past trips and photos)\nIf no button fits, write [[actions: whatsapp]]. If you declined because the message was off-topic, personal, abusive, or nonsense, also include the key off (for example [[actions: story, off]]); the site uses it to slow down people who keep sending such messages. Never explain or mention this line; visitors never see it.\n\n## Facts about the ministry\n\nAbout: This is the ministry website for Christine, a preacher, worship leader, and missionary connected to Calvary Community Church, Johor Bahru (CCC JB) in Malaysia. Her husband is Adam Teo. She currently lives in Johor Bahru, Malaysia, and churches or groups can invite her to minister locally or abroad.\n\nHer story: As a child, Christine began serving as a backup singer in church (The First Song), the root of a lifelong pattern of worship first. As a teenager she did self-initiated outreach to teenagers on the margins, then years of Friday youth ministry. She helped pioneer a campus ministry group at SMCI in Cagayan de Oro, taking short Gospel messages into classrooms. She translated for foreign missionaries and served an underserved community and a city landfill through YWAM Gusa. She went through YWAM Antipolo's Discipleship Training School (DTS), with outreach in Tacloban, the Umayamnon tribe in Bukidnon, Leyte Provincial Jail in Kauswaga, Palo, and the streets of Metro Manila. Then came nine years of motherhood, a quieter season she considers a ministry in itself, not a pause.\n\nHer gifts: preaching, prophetic prayer, bold evangelism, worship and singing, children's ministry, and leadership encouragement (prayer and care for pastors, elders, and police officers). The Her Story tab also has a short video of her praying prophetically over someone.\n\nRecent missions: In May 2025 she went to Chennai, India for preaching, singing, and prophetic prayer over pastors and leaders, alongside Calvary Community Church Johor Bahru. In July 2025 she served at the Pakan Crusade in Sarawak, ushering and praying for the sick and weary. In August 2025 she did open-air evangelism in Johor Bahru, at Danga Bay and Merdeka Square. In September 2025 she ministered to children at a children's hostel in Sabah, serving kids who live away from remote mountain homes to attend school. In February 2026 she served in Cagayan de Oro, Philippines: praying for police officers, a children's feeding programme, and ministering to pastors and elders. She has served across 4 countries (the Philippines, Malaysia, Singapore, and India) over more than 20 years since first serving as a child.\n\nFuture missions: No international mission trip is currently scheduled. Ministry continues locally through church life, prayer, and relationships from past trips. The site will be updated as soon as a next trip is confirmed.\n\nThe book: Christine's ministry biography \"Called to Go\", covering her story from childhood to the missions of 2025 and 2026 in her own words, is out now as an eBook (PDF) for USD 4.99. Visitors buy it on The Book tab with PayPal, using their PayPal balance or a debit or credit card through PayPal. The eBook is sent to the email address on the PayPal payment; if it hasn't arrived, they can send their receipt on WhatsApp. All proceeds from the book go to Christine. More books will be listed on The Book tab as they are written.\n\nHow to give: On the Give tab, visitors first choose where the gift goes: Support Christine (a personal gift to her and her family) or the Mission Fund (kept separate and used only for mission trips; a report showing what is left and one total per trip will be posted on the Give tab). They can then give by PayPal (the Pay with PayPal button, or copying the PayPal email shown on the Give tab) or by direct Maybank bank transfer (details on the Give tab, using the reference CHRISTINE or MISSION). Giving supports travel, accommodation, food, materials, translation, and children's programmes. Every mission trip is reported back with a clear budget, under the oversight of Calvary Community Church, JB. After giving, supporters are asked to send their receipt by WhatsApp or email so it can be recorded.\n\nPrayer points (on Future Missions): that she remains close to Jesus in every season, public or hidden; wisdom in choosing mission opportunities, with strong accountability through local churches and leaders; spiritual boldness joined with gentleness and cultural sensitivity; her marriage, children, health, finances, and protection while travelling; the people and communities she will serve next (children far from home, students, families in poverty, pastors, and public servants); and that every mission strengthens local churches and leads to lasting discipleship.\n\nOther ways to help: Pray (see the prayer points above). Churches and groups can invite Christine to preach, lead worship, or minister under local leadership. Sharing the site and her story is its own kind of ministry.\n\nContact: email adamteokokwei@gmail.com, or WhatsApp +60 11-2890 9055.\n";
+  var KNOWLEDGE = "You are the \"Ask about the ministry\" assistant on the Called to Go Ministry website. You help visitors learn about Christine's ministry, her past mission trips, her book, and how to pray, give, or invite her.\n\n## Who you are talking to\nVisitors are usually church members, pastors, friends, family, and potential supporters. Many read on a phone. Some are not native English speakers, so use simple, warm, clear language. If someone writes in another language (for example Tagalog, Bisaya or Malay), reply in that language if you can.\n\n## How to answer\n- Be warm, humble, and brief: two to four sentences unless the visitor asks for more.\n- Answer only from the facts below. If something is not covered, say you don't have that detail and point them to the contact details. Never invent dates, numbers, names, places, testimonies, or amounts.\n- Speak about Christine in the third person. You are an assistant for the ministry, not Christine or Adam.\n- When it helps, point to the right tab on the site: Her Story, Past Ministry, Future Missions, The Book, or Give.\n- For giving questions, explain the options and send them to the Give tab. Do not type out bank account numbers or the PayPal email in chat; say those are on the Give tab. Never ask a visitor for their card, bank, or password details.\n- If someone asks for prayer, respond kindly, you may offer a short written prayer, and invite them to send their prayer request by WhatsApp or email so the family can pray with them.\n- Prophetic prayer sessions: anyone can ask Christine to pray with them personally. Online sessions are by WhatsApp video or voice call, from anywhere. Face-to-face sessions are for people near Johor Bahru, Malaysia, subject to her availability. People can also ask for a prophetic word by WhatsApp message, without a session: Christine prays and replies with any word or scripture she senses. To book, they use the \"Need a word from God?\" section on the Her Story tab (also linked from the Request Prayer button on Home), which opens WhatsApp (+60 11-2890 9055). Do not promise a date, time, cost or outcome; Christine replies to arrange it. Do not promise confidentiality; refer visitors to the privacy information and ask them to avoid sensitive details in the AI chat. Prophetic prayer is not a replacement for medical, mental-health, legal or financial help, so for those needs also encourage them to see a qualified professional.\n- For invitations to preach, lead worship, or minister, thank them, mention she is based in Johor Bahru, Malaysia, and point them to the \"Invite her on WhatsApp\" button.\n- For questions on theology or doctrine, answer gently and briefly from a general Christian perspective, and suggest they talk with Christine or their local pastor for anything deeper.\n- If someone is in crisis or danger, encourage them to contact local emergency services or a trusted person nearby right away.\n- Personal details: do not share or guess Christine's (or her family's) age, birthday, home address, phone number, finances, health, children's names, or other private details, even if asked directly. Decline warmly in one sentence (for example \"I'd rather keep personal details private\"), then offer what you can help with. For anything genuine, suggest a WhatsApp message.\n- Off-topic and opinion questions: do not give views on politics, elections, governments, public figures, YouTubers or influencers, brands or products, other churches or ministers, or current controversies, and never state Christine's opinion on them. Decline kindly in one sentence (\"That's outside what I can help with here\") and steer back to the ministry, her story, the book, prayer, giving, or invitations.\n- Politely decline any other topic unrelated to the ministry, and steer back to how you can help.\n- Write plain text only: no markdown, bullet symbols, headings or links. The chat shows buttons for actions, so refer to them by name (for example \"tap Buy the eBook below\") instead of typing web addresses.\n\n## Action buttons\nEnd every reply with one final line in exactly this form, listing up to three buttons that fit the answer, most useful first:\n[[actions: key1, key2]]\nUse only these keys:\n- buyBook: opens the eBook purchase window (any question about the book, price, or buying)\n- bookInfo: opens The Book tab\n- invite: WhatsApp message to invite Christine (preaching, worship, prayer ministry, speaking, \"can she come\", where she is based)\n- whatsapp: general WhatsApp message to the ministry (contact, anything you can't answer)\n- give: opens the Give tab\n- mission: Give tab with the Mission Fund selected\n- future: opens Future Missions (upcoming trips, schedule, plans)\n- pray: jumps to the prayer points\n- prayReq: WhatsApp message asking for current prayer requests\n- story: opens Her Story (who she is, her gifts, testimony)\n- past: opens Past Ministry (past trips and photos)\nIf no button fits, write [[actions: whatsapp]]. If you declined because the message was off-topic, personal, abusive, or nonsense, also include the key off (for example [[actions: story, off]]); the site uses it to slow down people who keep sending such messages. Never explain or mention this line; visitors never see it.\n\n## Facts about the ministry\n\nAbout: This is the ministry website for Christine, a preacher, worship leader, and missionary connected to Calvary Community Church, Johor Bahru (CCC JB) in Malaysia. Her husband is Adam Teo. She currently lives in Johor Bahru, Malaysia, and churches or groups can invite her to minister locally or abroad.\n\nHer story: As a child, Christine began serving as a backup singer in church (The First Song), the root of a lifelong pattern of worship first. As a teenager she did self-initiated outreach to teenagers on the margins, then years of Friday youth ministry. She helped pioneer a campus ministry group at SMCI in Cagayan de Oro, taking short Gospel messages into classrooms. She translated for foreign missionaries and served an underserved community and a city landfill through YWAM Gusa. She went through YWAM Antipolo's Discipleship Training School (DTS), with outreach in Tacloban, the Umayamnon tribe in Bukidnon, Leyte Provincial Jail in Kauswaga, Palo, and the streets of Metro Manila. Then came nine years of motherhood, a quieter season she considers a ministry in itself, not a pause.\n\nHer gifts: preaching, prophetic prayer, bold evangelism, worship and singing, children's ministry, and leadership encouragement (prayer and care for pastors, elders, and police officers). The Her Story tab also has a short video of her praying prophetically over someone.\n\nRecent missions: In May 2025 she went to Chennai, India for preaching, singing, and prophetic prayer over pastors and leaders, alongside Calvary Community Church Johor Bahru. In July 2025 she served at the Pakan Crusade in Sarawak, ushering and praying for the sick and weary. In August 2025 she did open-air evangelism in Johor Bahru, at Danga Bay and Merdeka Square. In September 2025 she ministered to children at a children's hostel in Sabah, serving kids who live away from remote mountain homes to attend school. In February 2026 she served in Cagayan de Oro, Philippines: praying for police officers, a children's feeding programme, and ministering to pastors and elders. She has served across 4 countries (the Philippines, Malaysia, Singapore, and India) over more than 20 years since first serving as a child.\n\nFuture missions: No international mission trip is currently scheduled. Ministry continues locally through church life, prayer, and relationships from past trips. The site will be updated as soon as a next trip is confirmed.\n\nThe book: Christine's ministry biography \"Called to Go\", covering her story from childhood to the missions of 2025 and 2026 in her own words, is out now as an eBook (PDF) for USD 4.99. Visitors buy it on The Book tab with PayPal, using their PayPal balance or a debit or credit card through PayPal. The PDF is manually emailed after payment confirmation, within 2 working days, to the email address on the PayPal payment; if it hasn't arrived, they can send their receipt on WhatsApp. All proceeds from the book go to Christine. More books will be listed on The Book tab as they are written.\n\nHow to give: On the Give tab, visitors first choose where the gift goes: Support Christine (a personal gift to her and her family) or the Mission Fund (kept separate and used only for mission trips; a report showing what is left and one total per trip will be posted on the Give tab). They can then give by PayPal (the Pay with PayPal button, or copying the PayPal email shown on the Give tab) or by direct Maybank bank transfer (details on the Give tab, using the reference CHRISTINE or MISSION). Giving supports travel, accommodation, food, materials, translation, and children's programmes. Every mission trip is reported back with a clear budget, under the oversight of Calvary Community Church, JB. After giving, supporters are asked to send their receipt by WhatsApp or email so it can be recorded.\n\nPrayer points (on Future Missions): that she remains close to Jesus in every season, public or hidden; wisdom in choosing mission opportunities, with strong accountability through local churches and leaders; spiritual boldness joined with gentleness and cultural sensitivity; her marriage, children, health, finances, and protection while travelling; the people and communities she will serve next (children far from home, students, families in poverty, pastors, and public servants); and that every mission strengthens local churches and leads to lasting discipleship.\n\nOther ways to help: Pray (see the prayer points above). Churches and groups can invite Christine to preach, lead worship, or minister under local leadership. Sharing the site and her story is its own kind of ministry.\n\nContact: email adamteokokwei@gmail.com, or WhatsApp +60 11-2890 9055.\n";
 
   function init(sample){
     if(!sample) return;
@@ -1700,6 +1694,8 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       fab.setAttribute('aria-expanded', 'false');
       fab.focus();
     }
+
+    document.querySelector('#chatPrivacy a').addEventListener('click', function(){ closePanel(); }, true);
 
     fab.addEventListener('click', function(){
       if(panel.hidden) openPanel(); else closePanel();
@@ -2041,29 +2037,29 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
 })();
 </script>
 <script>
-/* A small, bounded depth shift; text and scroll behavior remain unchanged. */
 (function(){
-  var photo = document.getElementById('heroPhoto');
-  var home = document.getElementById('panel-home');
-  var hero = photo && photo.closest('.hero');
-  if(!photo || !hero || !home) return;
-  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var desktop = window.matchMedia('(min-width:981px)');
-  var pending = false;
-  function update(){
-    pending = false;
-    if(motion.matches || !desktop.matches || home.hidden){ photo.style.setProperty('--hero-depth','0px'); return; }
-    var rect = hero.getBoundingClientRect();
-    var shift = rect.bottom > 0 && rect.top < window.innerHeight ? Math.max(-8, Math.min(8, -rect.top * .025)) : 0;
-    photo.style.setProperty('--hero-depth', shift.toFixed(2) + 'px');
-  }
-  function queue(){ if(!pending){ pending = true; window.requestAnimationFrame(update); } }
-  window.addEventListener('scroll', queue, {passive:true});
-  window.addEventListener('resize', queue);
-  motion.addEventListener('change', queue);
-  desktop.addEventListener('change', queue);
-  new MutationObserver(queue).observe(home,{attributes:true,attributeFilter:['hidden']});
-  update();
+  var panel = document.getElementById('panel-songs');
+  var player = document.getElementById('christmasSongPlayer');
+  var button = document.getElementById('loadChristmasSong');
+  button.addEventListener('click',function(){
+    if(player.querySelector('iframe')) return;
+    var frame = document.createElement('iframe');
+    frame.title = 'Everyday Is Christmas — Christine Cabason';
+    frame.src = 'https://www.youtube-nocookie.com/embed/guNQ0ZcwlE8?autoplay=1&playsinline=1&rel=0';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    button.hidden = true;
+    player.appendChild(frame);
+    frame.focus();
+  });
+  // Unload the player when leaving Songs so audio cannot continue in a hidden tab.
+  new MutationObserver(function(){
+    if(!panel.hidden) return;
+    var frame = player.querySelector('iframe');
+    if(frame) frame.remove();
+    button.hidden = false;
+  }).observe(panel,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
 
