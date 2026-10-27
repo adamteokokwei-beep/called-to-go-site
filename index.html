@@ -767,6 +767,43 @@
   a.ff-item:hover{color:var(--ink)!important;}
   .ff-tip{background:var(--ink); color:#fff;}
   .ff-tip::after{border-top-color:var(--ink);}
+
+  /* Homepage refinement: preserve the established hero; give prayer room below it. */
+  #heroPhoto{transform:translate3d(0,var(--hero-depth,0px),0) scale(1.06); transform-origin:43% 78%;}
+  .home-prayer{scroll-margin-top:164px; padding:76px 0; background:#344A3C; color:#FAF7F0;}
+  .home-prayer .wrap,.home-moments .wrap{padding-inline:clamp(44px,5vw,64px);}
+  .home-prayer-grid{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr); gap:clamp(28px,6vw,76px); align-items:center;}
+  #panel-home .home-prayer h2{font-size:clamp(30px,4.2vw,48px); line-height:1.12; max-width:18ch; margin:0 0 22px; color:#FAF7F0;}
+  .home-prayer p{max-width:54ch; font-size:17px; line-height:1.7; color:#EBEEDF; margin:0 0 26px;}
+  .home-prayer .btn{background:#FAF7F0; color:#293F31; border-color:#FAF7F0; text-decoration:none;}
+  .home-prayer .btn:hover{background:#E4EAD8; border-color:#E4EAD8;}
+  .home-prayer figure{margin:0; max-width:340px; justify-self:end; width:100%;}
+  .home-prayer img{width:100%; height:auto; aspect-ratio:4/4.3; object-fit:cover; object-position:50% 28%; border-radius:16px;}
+  .home-prayer figcaption{font-size:13px; color:#EBEEDF; line-height:1.5; margin-top:12px;}
+  .home-moments{padding:80px 0 24px;}
+  .home-moments-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.7fr); gap:clamp(28px,6vw,72px); align-items:center;}
+  .home-moments figure{margin:0;}
+  .home-moments .prayer-moment{width:100%; height:clamp(340px,44vw,480px); object-fit:cover; object-position:50% 42%; border-radius:16px;}
+  #panel-home .home-moments h2{font-size:clamp(30px,3.8vw,44px); line-height:1.15; margin:0 0 20px;}
+  .home-moments p{font-size:17px; line-height:1.7; margin:0 0 22px; max-width:46ch; color:var(--ink-2);}
+  .home-moments figcaption{font-size:13px; color:var(--ink-2); line-height:1.5; margin-top:12px;}
+  .home-moments a{font-weight:600; text-underline-offset:5px; text-decoration-thickness:1px;}
+  .btn,.card-cta,.receipt-btn,.tab-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease;}
+  .btn:active,.receipt-btn:active{filter:brightness(.94);}
+  .home-moments a:hover,.home-moments a:focus-visible{color:var(--brass-deep); text-decoration-thickness:2px;}
+  .home-prayer a:focus-visible{outline:3px solid #FAF7F0; outline-offset:5px;}
+  @media (prefers-reduced-motion:no-preference){
+    #panel-home .hero-textblock h1{animation:homeHeadline .65s cubic-bezier(.16,1,.3,1) both;}
+    @keyframes homeHeadline{from{opacity:.85; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+  }
+  @media (max-width:760px){
+    .home-prayer{scroll-margin-top:88px; padding:48px 0;}
+    .home-prayer-grid,.home-moments-grid{grid-template-columns:1fr; gap:30px;}
+    .home-prayer figure{justify-self:start; max-width:240px;}
+    .home-moments{padding:48px 0 12px;}
+    .home-moments .prayer-moment{height:380px;}
+  }
+
 </style>
 
 </head>
@@ -807,6 +844,34 @@
       </div>
     </div>
   </div>
+
+  <section class="home-prayer" id="home-prayer" aria-labelledby="homePrayerTitle">
+    <div class="wrap home-prayer-grid">
+      <div>
+        <h2 id="homePrayerTitle">A moment for prayer. A place for encouragement.</h2>
+        <p>Prophetic prayer and worship are at the heart of Christine's ministry. If you are facing a decision, walking through a difficult season, or looking for encouragement, you can connect with her for prayer.</p>
+        <a class="btn" href="#prophetic-prayer" data-goto="story" data-target="prophetic-prayer">Request Prayer <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <figure>
+        <img src="img/37399b22fb9d.webp" alt="Christine Cabason" width="912" height="900" loading="lazy" decoding="async">
+        <figcaption>Christine Cabason &middot; Johor Bahru, Malaysia</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="home-moments" aria-labelledby="homeMomentsTitle">
+    <div class="wrap home-moments-grid">
+      <figure>
+        <img class="prayer-moment" src="img/58763fefa233.webp" alt="Christine offering prophetic prayer for Pastor Jesse Ubay Ubay" width="787" height="1400" loading="lazy" decoding="async">
+        <figcaption>A moment of prophetic prayer in Cagayan de Oro, Philippines.</figcaption>
+      </figure>
+      <div>
+        <h2 id="homeMomentsTitle">Prayer, worship, and a willing heart.</h2>
+        <p>From worship in church to personal moments of prayer, Christine's ministry is rooted in her faith in Jesus and her care for people.</p>
+        <p>Churches and groups can get in touch about worship and prayer ministry, locally or abroad, subject to availability.</p>
+        <a href="https://wa.me/601128909055?text=Hi%20Christine%2C%20I%27d%20like%20to%20invite%20you%20for%20worship%20and%20prayer%20ministry." target="_blank" rel="noopener">Invite Christine for worship and prayer <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
 
   <div class="hero">
     <div class="wrap stats">
@@ -1975,4 +2040,31 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
   document.addEventListener('click',function(e){ if(head.classList.contains('menu-open') && !head.contains(e.target)) setOpen(false); });
 })();
 </script>
+<script>
+/* A small, bounded depth shift; text and scroll behavior remain unchanged. */
+(function(){
+  var photo = document.getElementById('heroPhoto');
+  var home = document.getElementById('panel-home');
+  var hero = photo && photo.closest('.hero');
+  if(!photo || !hero || !home) return;
+  var motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var desktop = window.matchMedia('(min-width:981px)');
+  var pending = false;
+  function update(){
+    pending = false;
+    if(motion.matches || !desktop.matches || home.hidden){ photo.style.setProperty('--hero-depth','0px'); return; }
+    var rect = hero.getBoundingClientRect();
+    var shift = rect.bottom > 0 && rect.top < window.innerHeight ? Math.max(-8, Math.min(8, -rect.top * .025)) : 0;
+    photo.style.setProperty('--hero-depth', shift.toFixed(2) + 'px');
+  }
+  function queue(){ if(!pending){ pending = true; window.requestAnimationFrame(update); } }
+  window.addEventListener('scroll', queue, {passive:true});
+  window.addEventListener('resize', queue);
+  motion.addEventListener('change', queue);
+  desktop.addEventListener('change', queue);
+  new MutationObserver(queue).observe(home,{attributes:true,attributeFilter:['hidden']});
+  update();
+})();
+</script>
+
 </body></html>
