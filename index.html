@@ -83,6 +83,9 @@
 
   main{min-height:60vh;}
   .tab-panel[hidden]{display:none;}
+  .skip-link{position:fixed; top:8px; left:8px; z-index:500; padding:12px 18px; background:var(--paper-card); color:var(--ink); transform:translateY(-200%);}
+  .skip-link:focus{transform:none; outline:3px solid var(--brass);}
+  .tab-panel:focus-visible{outline:2.5px solid var(--sea); outline-offset:-3px;}
 
   /* ---------- buttons ---------- */
   .btn{display:inline-flex; align-items:center; gap:8px; border-radius:99px; padding:13px 22px; font-size:14px; font-weight:800; border:1.5px solid transparent; font-family:var(--font-body);}
@@ -768,6 +771,7 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header class="nav">
   <div class="nav-top">
     <div class="nav-brand"><img class="brand-banner" src="img/a74924042497.webp" alt="Called to Go Ministry logo" width="1324" height="244" fetchpriority="high" srcset="img/a74924042497-720.webp 720w, img/a74924042497.webp 1324w" sizes="(max-width: 800px) 100vw, 1080px" decoding="async"></div>
@@ -783,7 +787,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <!-- ============ HOME ============ -->
 <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
@@ -1137,20 +1141,20 @@
     <div class="help-head"><span class="eyebrow">MORE WAYS TO HELP</span><h3>Pray, invite, share.</h3></div>
     <div class="help-band">
     <div class="help-grid">
-      <div class="img-card" style="--img:url('images/give-pray.jpg'); --fallback:linear-gradient(160deg, #6E7B54, #2B3322 75%);">
+      <div class="img-card" style="--img:url('img/3c19881be841.webp'); --fallback:linear-gradient(160deg, #6E7B54, #2B3322 75%);">
         <div class="bg" aria-hidden="true"></div>
         <h3 data-h4>Pray</h3>
         <p>For wisdom, protection, open doors, and lasting discipleship in every place she serves.</p>
         <a class="card-cta" href="#future" data-goto="future" data-target="prayer-points">Prayer updates <span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
-      <div class="img-card" style="--img:url('images/give-invite.jpg'); --fallback:linear-gradient(160deg, #B5502A, #4A2412 75%);">
+      <div class="img-card" style="--img:url('img/fc85b1d30f9a.webp'); --fallback:linear-gradient(160deg, #B5502A, #4A2412 75%);">
         <div class="bg" aria-hidden="true"></div>
         <h3 data-h4>Invite</h3>
         <p>Churches and groups can invite her to preach, lead worship, or minister under local leadership.</p>
         <span class="based-in">Johor Bahru, Malaysia</span>
         <a class="card-cta" href="https://wa.me/601128909055?text=I%27d%20like%20to%20invite%20you%20to%20" target="_blank" rel="noopener">Send an invitation <span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
-      <div class="img-card" style="--img:url('images/give-share.jpg'); --fallback:linear-gradient(160deg, #8B3A2E, #2B1A15 75%);">
+      <div class="img-card" style="--img:url('images/help-backdrop.jpg'); --fallback:linear-gradient(160deg, #8B3A2E, #2B1A15 75%);">
         <div class="bg" aria-hidden="true"></div>
         <h3 data-h4>Share</h3>
         <p>Pass along her story and prayer needs. Sharing this page is its own kind of ministry.</p>
@@ -1196,8 +1200,10 @@
       </div>
       <button id="chatCloseBtn" class="chat-close" type="button" aria-label="Close">&times;</button>
     </div>
-    <div id="chatMessages" class="chat-messages"></div>
+    <div id="chatMessages" class="chat-messages" role="log" aria-label="Conversation" aria-live="off"></div>
+    <div id="chatStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     <form id="chatForm" class="chat-form">
+      <label class="sr-only" for="chatInput">Your question about the ministry</label>
       <input id="chatInput" type="text" placeholder="Ask a question" autocomplete="off">
       <button type="submit" id="chatSendBtn" class="chat-send" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </form>
@@ -1210,9 +1216,17 @@ var yrEl = document.getElementById('yr'); if(yrEl) yrEl.textContent = new Date()
 (function(){
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
   var panels = {};
+  var mobile = window.matchMedia('(max-width:760px)');
   tabs.forEach(function(btn){
-    panels[btn.getAttribute('data-tab')] = document.getElementById('panel-' + btn.getAttribute('data-tab'));
+    var panel = document.getElementById('panel-' + btn.getAttribute('data-tab'));
+    panel.tabIndex = 0;
+    panels[btn.getAttribute('data-tab')] = panel;
   });
+  function orientation(){
+    document.getElementById('siteTabs').setAttribute('aria-orientation', mobile.matches ? 'vertical' : 'horizontal');
+  }
+  orientation();
+  mobile.addEventListener('change', orientation);
 
   function activate(name, opts){
     opts = opts || {};
@@ -1220,35 +1234,61 @@ var yrEl = document.getElementById('yr'); if(yrEl) yrEl.textContent = new Date()
     tabs.forEach(function(btn){
       var on = btn.getAttribute('data-tab') === name;
       btn.setAttribute('aria-selected', on ? 'true' : 'false');
+      btn.tabIndex = on ? 0 : -1;
     });
-    Object.keys(panels).forEach(function(key){
-      panels[key].hidden = key !== name;
-    });
-    if(opts.scroll !== false){
-      window.scrollTo({top:0, behavior:'auto'});
-    }
+    Object.keys(panels).forEach(function(key){ panels[key].hidden = key !== name; });
+    var target = opts.target && document.getElementById(opts.target);
     if(opts.pushHash !== false){
-      try{ history.replaceState(null, '', '#' + name); }catch(e){}
+      var hash = '#' + (target ? opts.target : name);
+      if(location.hash !== hash){
+        try{ history.pushState(null, '', hash); }catch(e){}
+      }
     }
+    if(opts.focus){
+      var focusTarget = target || panels[name];
+      if(!focusTarget.hasAttribute('tabindex')) focusTarget.tabIndex = -1;
+      focusTarget.focus({preventScroll:true});
+    }
+    if(target) target.scrollIntoView({behavior:'auto', block:'start'});
+    else if(opts.scroll !== false) window.scrollTo({top:0, behavior:'auto'});
   }
-
-  tabs.forEach(function(btn){
-    btn.addEventListener('click', function(){ activate(btn.getAttribute('data-tab')); });
+  function fromHash(focus){
+    var id;
+    try{ id = decodeURIComponent(location.hash.slice(1)); }catch(e){ id = ''; }
+    var target = id && document.getElementById(id);
+    if(id === 'main-content'){
+      if(focus) target.focus({preventScroll:true});
+      return;
+    }
+    var panel = target && target.closest('.tab-panel');
+    var name = panels[id] ? id : panel ? panel.id.replace('panel-', '') : 'home';
+    activate(name, {target: panel ? id : null, pushHash:false, scroll:focus, focus:focus});
+  }
+  tabs.forEach(function(btn, idx){
+    btn.addEventListener('click', function(){ activate(btn.getAttribute('data-tab'), {focus:mobile.matches}); });
+    btn.addEventListener('keydown', function(e){
+      var next;
+      if(e.key === 'Home') next = 0;
+      else if(e.key === 'End') next = tabs.length - 1;
+      else if(e.key === (mobile.matches ? 'ArrowDown' : 'ArrowRight')) next = (idx + 1) % tabs.length;
+      else if(e.key === (mobile.matches ? 'ArrowUp' : 'ArrowLeft')) next = (idx + tabs.length - 1) % tabs.length;
+      else return;
+      e.preventDefault();
+      activate(tabs[next].getAttribute('data-tab'));
+      tabs[next].focus();
+    });
   });
   document.querySelectorAll('[data-goto]').forEach(function(el){
     el.addEventListener('click', function(ev){
-      var target = el.getAttribute('data-target');
-      if(el.tagName === 'A') ev.preventDefault();
-      activate(el.getAttribute('data-goto'), {scroll: !target});
-      if(target){
-        var t = document.getElementById(target);
-        if(t) t.scrollIntoView({behavior:'smooth', block:'start'});
+      if(el.tagName === 'A'){
+        if(ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+        ev.preventDefault();
       }
+      activate(el.getAttribute('data-goto'), {target:el.getAttribute('data-target'), focus:true});
     });
   });
-
-  var initial = (location.hash || '').replace('#','');
-  activate(panels[initial] ? initial : 'home', {scroll:false, pushHash:false});
+  window.addEventListener('hashchange', function(){ fromHash(true); });
+  fromHash(false);
 })();
 
 </script>
@@ -1529,6 +1569,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
     var input = document.getElementById('chatInput');
     var sendBtn = document.getElementById('chatSendBtn');
 
+    var statusEl = document.getElementById('chatStatus');
     var history = [];
     var greeted = false;
     var busy = false;
@@ -1568,9 +1609,18 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
     }
     window.addEventListener('resize', fitViewport);
 
+    var background = Array.prototype.slice.call(document.querySelectorAll('header.nav, main, .social-rail, .float-foot'));
+    function syncChatMode(){
+      var modal = !panel.hidden && smallScreen.matches;
+      docEl.classList.toggle('chat-full', modal);
+      if(modal){ fitViewport(); panel.setAttribute('aria-modal', 'true'); }
+      else panel.removeAttribute('aria-modal');
+      background.forEach(function(el){ el.inert = modal; });
+    }
+    smallScreen.addEventListener('change', syncChatMode);
     function openPanel(){
-      if(smallScreen.matches){ fitViewport(); docEl.classList.add('chat-full'); }
       panel.hidden = false;
+      syncChatMode();
       fab.setAttribute('aria-expanded', 'true');
       if(!greeted){
         greeted = true;
@@ -1580,15 +1630,24 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       input.focus();
     }
     function closePanel(){
-      docEl.classList.remove('chat-full');
       panel.hidden = true;
+      syncChatMode();
       fab.setAttribute('aria-expanded', 'false');
+      fab.focus();
     }
 
     fab.addEventListener('click', function(){
       if(panel.hidden) openPanel(); else closePanel();
     });
     closeBtn.addEventListener('click', closePanel);
+    panel.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ e.preventDefault(); e.stopPropagation(); closePanel(); return; }
+      if(e.key !== 'Tab' || !smallScreen.matches) return;
+      var controls = Array.prototype.slice.call(panel.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled)')).filter(function(el){ return el.getClientRects().length; });
+      var first = controls[0], last = controls[controls.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
 
     var WA = 'https://wa.me/601128909055?text=';
     function goTab(name, target){
@@ -1678,6 +1737,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       messagesEl.appendChild(a);
     }
     function showSummary(c){
+      statusEl.textContent = '';
       addMessage('user', c.label);
       busy = true; sendBtn.disabled = true;
       var t = addTyping();
@@ -1685,6 +1745,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
         t.className = 'chat-msg chat-msg-bot';
         t.removeAttribute('aria-label');
         t.textContent = c.summary;
+        statusEl.textContent = c.summary;
         addLink(c);
         addCtas(['more']);
         busy = false; sendBtn.disabled = false;
@@ -1744,6 +1805,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
     }
 
     function ask(text, fromChip){
+      statusEl.textContent = '';
       addMessage('user', text);
       busy = true; sendBtn.disabled = true;
       var found = topicsFor(text);
@@ -1759,9 +1821,10 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
           typingEl.className = 'chat-msg chat-msg-bot';
           typingEl.removeAttribute('aria-label');
           typingEl.textContent = reply;
+          statusEl.textContent = reply;
           messagesEl.scrollTop = messagesEl.scrollHeight;
           finish(text, reply, keys);
-          if(!smallScreen.matches) input.focus();
+          // Keep the visitor's focus where they moved it while waiting.
         }, wait);
       }
 
