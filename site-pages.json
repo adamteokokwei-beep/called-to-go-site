@@ -1,0 +1,42 @@
+{
+  "home": {
+    "path": "/",
+    "title": "Called to Go Ministry | Prophetic Prayer & Worship",
+    "description": "Meet Christine Cabason in Johor Bahru: prophetic prayer, worship, original Christian songs and mission stories. Request prayer or invite her to minister."
+  },
+  "story": {
+    "path": "/her-story/",
+    "title": "Christine Cabason’s Story & Gifts | Called to Go",
+    "description": "Read Christine Cabason’s story, from singing in church as a child to worship, prayer and mission work. Meet the gifts behind Called to Go Ministry."
+  },
+  "prayer": {
+    "path": "/prophetic-prayer/",
+    "title": "Prophetic Prayer with Christine | Johor Bahru & Online",
+    "description": "Request prophetic prayer or a word of encouragement from Christine Cabason. Connect by WhatsApp message, online call or in person near Johor Bahru."
+  },
+  "past": {
+    "path": "/past-ministry/",
+    "title": "Past Ministry & Mission Stories | Called to Go",
+    "description": "Explore Christine Cabason’s ministry journey, with photos and stories from prayer, worship, outreach and mission trips in Malaysia, India and the Philippines."
+  },
+  "future": {
+    "path": "/future-missions/",
+    "title": "Future Missions & Prayer Points | Called to Go",
+    "description": "Follow future mission plans and pray for Christine Cabason’s ministry. Find current prayer points and ways to invite her to serve your church or group."
+  },
+  "songs": {
+    "path": "/songs/",
+    "title": "Christine’s Songs | Everyday Is Christmas | Called to Go",
+    "description": "Watch Everyday Is Christmas (每一天是圣诞节), Christine’s Chinese Christmas song. Full songs coming soon to Apple Music, Spotify and YouTube Music."
+  },
+  "book": {
+    "path": "/book/",
+    "title": "Called to Go eBook by Christine Cabason | USD 4.99",
+    "description": "Read Called to Go, Christine Cabason’s ministry biography. Buy the PDF for USD 4.99; manually emailed within 2 working days after confirmed payment."
+  },
+  "give": {
+    "path": "/give/",
+    "title": "Support Christine & Future Missions | Called to Go",
+    "description": "Support Christine and her family or give to the separate Mission Fund for future trips. Find PayPal and bank transfer options and receipt instructions."
+  }
+}
