@@ -31,6 +31,8 @@ def structured(key):
 
 def render(key):
  page=PAGES[key];s=source
+ s=re.sub(r'var SITE_SCHEMAS = .*?;\n', '', s)
+ s=s.replace('var yrEl', 'var SITE_SCHEMAS = '+json.dumps({k:json.loads(structured(k)) for k in PAGES},ensure_ascii=False,separators=(',',':'))+';\nvar yrEl',1)
  s=re.sub(r'<title>.*?</title>','<title>'+html.escape(page['title'])+'</title>',s,count=1)
  for pattern,value in [(r'(<meta name="description" content=")[^"]*',page['description']),(r'(<meta property="og:title" content=")[^"]*',page['title']),(r'(<meta name="twitter:title" content=")[^"]*',page['title']),(r'(<meta property="og:description" content=")[^"]*',page['description']),(r'(<meta name="twitter:description" content=")[^"]*',page['description']),(r'(<meta property="og:url" content=")[^"]*',ORIGIN+page['path']),(r'(<link rel="canonical" href=")[^"]*',ORIGIN+page['path'])]:
   s=re.sub(pattern,lambda m:m[1]+html.escape(value,quote=True),s,count=1)
