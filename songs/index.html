@@ -3,7 +3,7 @@
 <head>
 <meta name="msvalidate.01" content="9E4A4871D24351F5F04404CD7D4FC135" />
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GAN7Q9im5k49cLXnnB7hh1QqKqjHfKyPuHlp0DhBZV0=' 'sha256-RUGYF+FvH2WqSd6U6J1lRDZ/ToUn29GF6N0uHXD/n/Y=' 'sha256-VUNEfzEAeGsuHSTE4UAohCQDwD0Hk37QIr604Ag+Skw=' 'sha256-OSiRx7GTkCbnBrsaZ2P64qgQYDH/UvCjlSyLXso7LZc=' 'sha256-8ryPqd5Jq4iWIh28DxzK043pgeFFLf9oPHKrHkYYBuM=' 'sha256-Nb7mYp4pCXEwLJ5UqV8+05kF4IvdM29bStgqUAYVJeI=' 'sha256-pVzWuzHZiauYatTS1qGCebvoJy29G+XtLEqS8Md2Wso=' 'sha256-jKe6EGZ6mJyvdL9YjgZjheE57nakfAPlIqEApFl2bW8=' 'sha256-KpxS75ZZ8RHeXjLiOMCAIYSFxa1Q+NWM93mjGkdSRYU=' 'sha256-wtraWTZpOuwwF9RBDfdHz6jp23A/0n6J7j91LiUP7vU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; connect-src 'self' https://called-to-go-chatbot.adamteokokwei.workers.dev; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.paypal.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-GAN7Q9im5k49cLXnnB7hh1QqKqjHfKyPuHlp0DhBZV0=' 'sha256-RUGYF+FvH2WqSd6U6J1lRDZ/ToUn29GF6N0uHXD/n/Y=' 'sha256-VUNEfzEAeGsuHSTE4UAohCQDwD0Hk37QIr604Ag+Skw=' 'sha256-OSiRx7GTkCbnBrsaZ2P64qgQYDH/UvCjlSyLXso7LZc=' 'sha256-8ryPqd5Jq4iWIh28DxzK043pgeFFLf9oPHKrHkYYBuM=' 'sha256-Nb7mYp4pCXEwLJ5UqV8+05kF4IvdM29bStgqUAYVJeI=' 'sha256-4eqNqDFybve6T06q858wP8aYCb/TCByIkc1a5rBjPUk=' 'sha256-jKe6EGZ6mJyvdL9YjgZjheE57nakfAPlIqEApFl2bW8=' 'sha256-KpxS75ZZ8RHeXjLiOMCAIYSFxa1Q+NWM93mjGkdSRYU=' 'sha256-wtraWTZpOuwwF9RBDfdHz6jp23A/0n6J7j91LiUP7vU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://i.ytimg.com; media-src 'self'; connect-src 'self' https://called-to-go-chatbot.adamteokokwei.workers.dev; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://www.paypal.com">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Christine’s Songs | Everyday Is Christmas | Called to Go</title>
 <meta name="description" content="Watch Everyday Is Christmas (每一天是圣诞节), Christine’s Chinese Christmas song. Full songs coming soon to Apple Music, Spotify and YouTube Music.">
@@ -1692,9 +1692,6 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       messagesEl.scrollTop = messagesEl.scrollHeight;
       return div;
     }
-    function typingDelay(text){
-      return Math.min(2200, 700 + String(text || '').length * 9);
-    }
     function addMessage(role, text){
       var div = document.createElement('div');
       div.className = 'chat-msg ' + (role === 'user' ? 'chat-msg-user' : 'chat-msg-bot');
@@ -1852,7 +1849,6 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       addMessage('user', c.label);
       busy = true; sendBtn.disabled = true;
       var t = addTyping();
-      setTimeout(function(){
         t.className = 'chat-msg chat-msg-bot';
         t.removeAttribute('aria-label');
         t.textContent = c.summary;
@@ -1860,7 +1856,6 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
         addLink(c);
         addCtas(['more']);
         busy = false; sendBtn.disabled = false;
-      }, typingDelay(c.summary));
     }
     function addChips(){
       var row = document.createElement('div');
@@ -1897,22 +1892,9 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       busy = false; input.disabled = false; sendBtn.disabled = false;
     }
 
-    // Slow-down for nonsense: every 3 off-topic, personal or gibberish messages doubles the reply time
-    // (x2 after 3, x4 after 6, x8 after 9). After more than 9, typed questions no longer go to the AI for 24 hours; tap options still work.
-    var STRIKE_KEY = 'cg-chat-strikes', DAY = 24 * 60 * 60 * 1000;
-    var strikes = {n: 0, t: 0};
-    try { var saved = JSON.parse(localStorage.getItem(STRIKE_KEY) || 'null'); if(saved && Date.now() - saved.t < DAY) strikes = saved; } catch(e){}
-    function addStrike(){
-      strikes = {n: strikes.n + 1, t: Date.now()};
-      try { localStorage.setItem(STRIKE_KEY, JSON.stringify(strikes)); } catch(e){}
-    }
-    function slowFactor(){ return Math.pow(2, Math.min(3, Math.floor(strikes.n / 3))); }
+    // Accept letters and numbers from every language; reject only symbol-only input.
     function looksLikeNonsense(t){
-      var letters = t.replace(/[^a-z\u00c0-\u024f]/gi, '');
-      return letters.length < 2 ||
-        /(.)\1{4,}/i.test(t) ||
-        /[bcdfghjklmnpqrstvwxz]{6,}/i.test(t) ||
-        /^(asdf|qwer|zxcv|hjkl|jkl|sdf)+$/i.test(t.replace(/\s+/g, ''));
+      return !/[\p{L}\p{N}]/u.test(t);
     }
 
     function ask(text, fromChip){
@@ -1921,22 +1903,16 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
       busy = true; sendBtn.disabled = true;
       var found = topicsFor(text);
       var nonsense = !fromChip && looksLikeNonsense(text);
-      var factor = slowFactor();
-      if(nonsense || (!fromChip && found.length && (found[0].key === 'personal' || found[0].key === 'offtopic'))) addStrike();
 
       var typingEl = addTyping();
-      var started = Date.now();
       function reveal(reply, keys){
-        var wait = Math.max(0, typingDelay(reply) * factor - (Date.now() - started));
-        setTimeout(function(){
-          typingEl.className = 'chat-msg chat-msg-bot';
+        typingEl.className = 'chat-msg chat-msg-bot';
           typingEl.removeAttribute('aria-label');
           typingEl.textContent = reply;
           statusEl.textContent = reply;
           messagesEl.scrollTop = messagesEl.scrollHeight;
           finish(text, reply, keys);
           // Keep the visitor's focus where they moved it while waiting.
-        }, wait);
       }
 
       if(nonsense){
@@ -1944,11 +1920,6 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
         reveal(huh);
         return;
       }
-      if(!fromChip && !found.length && strikes.n > 9){
-        reveal("I can only answer questions about the ministry right now. Please tap one of the options below, or message the ministry on WhatsApp.", ['whatsapp']);
-        return;
-      }
-
       // Personal, off-topic and tapped questions use the ready-made answers, so they work even with no AI connected.
       if(found.length && (fromChip || found[0].key === 'personal' || found[0].key === 'offtopic')){
         history.push({role:'user', content:text}, {role:'assistant', content:found[0].answer});
@@ -1962,13 +1933,10 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
         {role:'assistant', content: "Understood. I will answer visitor questions using only that information, warmly and briefly."}
       ].concat(history);
 
-      // Repeat offenders also wait before the question is sent, which slows how fast they can spend tokens.
-      var req = new Promise(function(r){ setTimeout(r, (factor - 1) * 1500); }).then(function(){
-        return CHAT_API_URL ? askServer(history) : sampleFn(turns, {modelTier: 'quick', cache: false});
-      });
+      // Start immediately; the request timeout bounds the network wait.
+      var req = CHAT_API_URL ? askServer(history) : sampleFn(turns, {modelTier: 'quick', cache: false});
       req.then(function(res){
         var out = splitActions(res.text);
-        if(out.off) addStrike();
         history.push({role:'assistant', content: res.text});
         reveal(out.text, out.keys);
       }).catch(function(err){
