@@ -52,6 +52,6 @@ for key,page in PAGES.items():
  target=ROOT/('index.html' if key=='home' else page['path'].strip('/')+'/index.html')
  target.parent.mkdir(parents=True,exist_ok=True);target.write_text(render(key))
 # Only canonical, real addresses belong in the sitemap (no hash sections).
-urls='\n'.join('  <url><loc>'+ORIGIN+p['path']+'</loc><lastmod>2026-10-28</lastmod></url>' for p in PAGES.values())
+urls='\n'.join('  <url><loc>'+ORIGIN+p['path']+'</loc></url>' for p in PAGES.values())
 (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'\n</urlset>\n')
 print('Built',len(PAGES),'static entry pages with canonical metadata and CSP hashes.')
