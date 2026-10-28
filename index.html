@@ -1793,10 +1793,13 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
   }
 
   function askServer(history){
+    var controller = new AbortController();
+    var deadline = setTimeout(function(){ controller.abort(); }, 25000);
     return fetch(CHAT_API_URL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({messages: history})
+      body: JSON.stringify({messages: history.slice(-12)}),
+      signal: controller.signal
     }).then(function(r){
       return r.json().then(function(data){
         if(!r.ok || !data.reply){
@@ -1806,7 +1809,7 @@ document.querySelectorAll('.photo-cap').forEach(function(cap){
         }
         return {text: data.reply};
       });
-    });
+    }).finally(function(){ clearTimeout(deadline); });
   }
 
   function placeFab(){
